@@ -1,2 +1,1 @@
-# grafica
- Curso de Tópicos Avanzados de Gráfica Computacional
+# Tópicos Avanzados de Gráfica Computacional
