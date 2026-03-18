@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Practical 01</title>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <canvas id="canvas" width="600px" height="600px"></canvas>
+  <script type="module">
+    import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { VertexNormalsHelper } from 'three/addons/helpers/VertexNormalsHelper.js';
+
+let scene, camera, mesh;
+let controls;
+
+init();
+
+
+function createGeometry() {
+    /**
+     * (1) crea los vertices, faces, y normales para formar un cuadrado
+     * v2-------v3
+     * |        |
+     * |        |
+     * v0 -----v1
+     * 
+     * (2) podrías generalizarlo agregando multiples columnas?
+     * 
+     * v4------v5-------v6-------v7 
+     * |        |        |        |
+     * |        |        |        |
+     * v0 -----v1 ------v2 ------v3 
+     * 
+     * 
+     * (3) puedes generalizarlo una vez más agregando multiple filas?
+     * v8------v9-------v10-------v11 
+     * |        |        |        |
+     * |        |        |        |
+     * v4------v5-------v6-------v7 
+     * |        |        |        |
+     * |        |        |        |
+     * v0 -----v1 ------v2 ------v3 
+     */
+    let vertices = [];
+    let faces = []
+    let normals = [] 
+    
+    const r = 2.0;
+    const c = 3.0;
+  
+    // Cómo fijamos la escala para que siempre sea de 1x2?
+    // dividimos por c y r para que el objeto tenga
+    // Cómo fijamos el 0,0 para que corresponda el centro del objeto?
+    // una vez escalado a 1x1 podemos simplemente restar (-0.5, -0.5)
+    // a la posición en x, y
+    for (let j=0; j<=r; j++){
+        for (let i=0; i<=c; i++) {
+            vertices.push(
+                i * 1/c -0.5 , j * 1/r - 0.5, 0,
+            );
+            normals.push(
+                0.0, 0.0, 1.0,
+            );
+        }
+    }
+    let stride = c + 1;
+    for (let j=0; j<r; j++){
+        for (let i=0; i<c; i++) {
+            const v0 = stride * j + i;
+            const v1 = v0 + 1;
+            const v4 = v0 + stride;
+            const v5 = v4 + 1;
+            faces.push(v0, v1, v4);
+            faces.push(v4, v1, v5);
+        }
+    }
+    console.log(vertices)
+    console.log(faces)
+    
+    const vertexBuffer = new THREE.BufferAttribute(new Float32Array(vertices), 3);
+    const normalsBuffer = new THREE.BufferAttribute(new Float32Array(normals), 3);
+    let geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', vertexBuffer);
+    geometry.setAttribute('normal', normalsBuffer);
+    geometry.setIndex(faces);
+    
+    const material = new THREE.MeshLambertMaterial({ color: '#FF00FF' });
+    // 
+    material.wireframe = true;
+    mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    const helper = new VertexNormalsHelper( mesh, 0.1, 0xffff00 );
+    scene.add( helper );
+}
+
+function createCamera() {
+    const aspect = canvas.clientWidth / canvas.clientHeight;
+    camera = new THREE.PerspectiveCamera(60, aspect, 0.1, 100);
+    camera.position.set(5, 5, 5);
+    scene.add(camera);
+}
+
+function createLight() {
+    const light = new THREE.AmbientLight(0xFFFFFF, 0.5);
+    scene.add(light);
+
+    const pointLight = new THREE.PointLight(0xff00ff, 1);
+    pointLight.position.set(0, 0.5, 1.0);
+    scene.add(pointLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(0, 0, 0);
+    directionalLight.target.position.set(0, 0, 0);
+
+    scene.add(directionalLight.target);
+    camera.add(directionalLight);
+
+}
+
+
+/** Updates the elements of the scene before the call to render */
+function update() {
+
+}
+
+/** Creates the scene and initalizes the elements in it **/
+function init() {
+    const canvas = document.querySelector('#canvas');
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color('#aaa');
+
+    createCamera();
+    createGeometry();
+    createLight();
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    //renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+    renderer.setAnimationLoop(() => {
+        update();
+        controls.update();
+        renderer.render(scene, camera);
+    });
+
+    // Helpers (could be removed!)
+    // ------------------------------------
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.update();
+
+    const gridHelper = new THREE.GridHelper(20, 20, '#bbb', '#999');
+    scene.add(gridHelper);
+
+    const axesHelper = new THREE.AxesHelper(2);
+    scene.add(axesHelper);
+}
+
+
+
+  </script>
+</body>
+
+</html>

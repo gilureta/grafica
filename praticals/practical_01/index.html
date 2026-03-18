@@ -26,78 +26,88 @@
   <canvas id="canvas"></canvas>
   <script type="module">
     import * as THREE from 'three';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    let scene, camera, mesh;
-    let controls;
+let scene, camera, mesh, group;
+let controls;
 
-    init();
+init();
 
-    //Instrucciones: 
-    // 1) Agrega un PointLight justo arriba del cubo
-    // 2) Haz que el cubo rote en el update
-    // 3) Discute, cómo podemos hacer que el cubo gire con 
-    // respecto al centro del mundo
-    // 4) Cómo podemos hacer que la luz se mantenga arriba del cubo?
-    function createGeometry() {
-      const geometry = new THREE.BoxGeometry();
-      const material = new THREE.MeshLambertMaterial({ color: '#FF00FF' });
-      mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(3, 0, 0);
-      scene.add(mesh);
-    }
+//Instrucciones: 
+// 1) Agrega un PointLight justo arriba del cubo
+// 2) Haz que el cubo rote en el update
+// 3) Discute, cómo podemos hacer que el cubo gire con 
+//      respecto al centro del mundo
+// 4) Cómo podemos hacer que la luz se mantenga arriba del cubo?
+function createGeometry() {
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshLambertMaterial({ color: '#FF00FF' });
+    mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(3, 0, 0);
+    
+    group = new THREE.Group();
+    group.add(mesh);
 
-    function createCamera() {
-      const aspect = canvas.clientWidth / canvas.clientHeight;
-      camera = new THREE.PerspectiveCamera(60, aspect, 0.1, 100);
-      camera.position.set(10, 10, 10);
-      scene.add(camera);
-    }
+    scene.add(group);
+}
 
-    function createLight() {
-      //https://threejs.org/docs/?q=Point#PointLight
-      const pointLight = new THREE.PointLight(0xffffff, 1, 0, 2);
-      
-    }
+function createCamera() {
+    const aspect = canvas.clientWidth / canvas.clientHeight;
+    camera = new THREE.PerspectiveCamera(60, aspect, 0.1, 100);
+    camera.position.set(10, 10, 10);
+    scene.add(camera);
+}
+
+function createLight() {
+    //https://threejs.org/docs/?q=Point#PointLight
+    const pointLight = new THREE.PointLight(0xffffff, 1, 0, 2);
+    pointLight.position.set(3, 0.6, 0.0);
+    group.add(pointLight);
+    //scene.add(pointLight);
+
+}
 
 
-    /** Updates the elements of the scene before the call to render */
-    function update() {
+/** Updates the elements of the scene before the call to render */
+function update() {
+    mesh.rotation.x += 0.01;
+    group.rotation.y += 0.01;
 
-    }
+}
 
-    /** Creates the scene and initalizes the elements in it **/
-    function init() {
-      const canvas = document.querySelector('#canvas');
+/** Creates the scene and initalizes the elements in it **/
+function init() {
+    const canvas = document.querySelector('#canvas');
 
-      scene = new THREE.Scene();
-      scene.background = new THREE.Color('#aaa');
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color('#aaa');
 
-      createCamera();
-      createGeometry();
-      createLight();
+    createCamera();
+    createGeometry();
+    createLight();
 
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-      //renderer.setPixelRatio( window.devicePixelRatio );
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    //renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-      renderer.setAnimationLoop(() => {
+    renderer.setAnimationLoop(() => {
         update();
         controls.update();
         renderer.render(scene, camera);
-      });
+    });
 
-      // Helpers (could be removed!)
-      // ------------------------------------
-      controls = new OrbitControls(camera, renderer.domElement);
-      controls.update();
+    // Helpers (could be removed!)
+    // ------------------------------------
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.update();
 
-      const gridHelper = new THREE.GridHelper(20, 20, '#bbb', '#999');
-      scene.add(gridHelper);
+    const gridHelper = new THREE.GridHelper(20, 20, '#bbb', '#999');
+    scene.add(gridHelper);
 
-      const axesHelper = new THREE.AxesHelper(2);
-      scene.add(axesHelper);
-    }
+    const axesHelper = new THREE.AxesHelper(2);
+    scene.add(axesHelper);
+}
+
 
   </script>
 </body>
