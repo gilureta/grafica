@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Practical 01</title>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <canvas id="canvas" width="600px" height="600px"></canvas>
+  <script type="module">
+    import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { VertexNormalsHelper } from 'three/addons/helpers/VertexNormalsHelper.js';
+
+let scene, camera, mesh;
+let controls;
+
+init();
+
+/** 
+ * INSTRUCCIONES I:
+ * El codigo `createCylinderGeometry` fue creado por chatgpt y tiene un problema
+ * con su textura. Si observas las letras en las tapas del cylindro, aparecen correctamente (A3, A4, etc). Pero en los lados del cylindro aparecen reflejadas
+ * Cómo podemos arreglar el UV map para que se vean correctamente?
+ * **/
+function createGeometry() {
+    const [vertices, faces, normals, uvs] = createCylinderGeometry(
+        {
+            radiusTop: 1,
+            radiusBottom: 1,
+            height: 2,
+            radialSegments: 32,
+            heightSegments: 1,
+            openEnded: false
+        }
+    )
+
+    let geometry;
+
+    const vertexBuffer = new THREE.BufferAttribute(new Float32Array(vertices), 3);
+    const normalsBuffer = new THREE.BufferAttribute(new Float32Array(normals), 3);
+
+    // NEW: create the uv buffer
+    const uvsBuffer = new THREE.BufferAttribute(new Float32Array(uvs), 2);
+
+    geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', vertexBuffer);
+    geometry.setAttribute('normal', normalsBuffer);
+    // NEW
+    geometry.setAttribute('uv', uvsBuffer);
+
+    geometry.setIndex(faces);
+
+    const texture = loadTexture();
+    const material = new THREE.MeshLambertMaterial({
+        color: "#cccccc",
+        map: texture,
+    });
+    mesh = new THREE.Mesh(geometry, material);
+
+    /** 
+     * INSTRUCCIONES II:
+     * Que pása con el UV map cuando scalo, roto, translado el mesh?
+     * **/
+    mesh.scale.set(1.0, 1.0, 1.0);
+    mesh.position.set(0.0, 0.0, 0.0);
+    // mesh.rotation.set(Math.PI / 2.0, 0.0, 0.0);
+
+    scene.add(mesh);
+
+}
+
+
+function loadTexture() {
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.setCrossOrigin('anonymous');
+
+    /** 
+     * INSTRUCCIONES III:
+     * Cómo tendriamos que modificar el UV para utilizar esta textura?
+     * 
+     * **/
+    const texture = textureLoader.load(
+        'barrel.jpg'
+    )
+    texture.colorSpace = THREE.SRGBColorSpace;
+
+    return texture;
+}
+
+
+function createCylinderGeometry({
+    radiusTop = 1,
+    radiusBottom = 1,
+    height = 2,
+    radialSegments = 32,
+    heightSegments = 1,
+    openEnded = false,
+} = {}) {
+
+    radialSegments = Math.max(3, Math.floor(radialSegments));
+    heightSegments = Math.max(1, Math.floor(heightSegments));
+
+    const vertices = [];
+    const normals = [];
+    const uvs = [];
+    const faces = [];
+
+    const halfHeight = height / 2;
+    const slope = (radiusBottom - radiusTop) / height;
+
+    // Stores vertex indices for the side grid
+    const sideIndices = [];
+
+    const textureBarrelSize = 512;
+    const textureSideHeight = 320;
+    const vMax = textureSideHeight / textureBarrelSize;
+  
+    // ----- Side surface -----
+    for (let y = 0; y <= heightSegments; y++) {
+        const v = y / heightSegments;
+        const radius = radiusTop + (radiusBottom - radiusTop) * v;
+        const py = halfHeight - v * height;
+
+        const row = [];
+
+        for (let x = 0; x <= radialSegments; x++) {
+            const u = x / radialSegments;
+            const theta = u * Math.PI * 2;
+
+            const cos = Math.cos(theta);
+            const sin = Math.sin(theta);
+
+            const px = radius * cos;
+            const pz = radius * sin;
+
+            vertices.push(px, py, pz);
+
+            // Normal for tapered cylinder side
+            const nx = cos;
+            const ny = slope;
+            const nz = sin;
+            const len = Math.hypot(nx, ny, nz);
+
+            normals.push(nx / len, ny / len, nz / len);
+
+            uvs.push(1 - u, (1 - vMax) + (1 - v) * vMax);
+            row.push(vertices.length / 3 - 1);
+        }
+
+        sideIndices.push(row);
+    }
+
+
+    // Side faces
+    for (let y = 0; y < heightSegments; y++) {
+        for (let x = 0; x < radialSegments; x++) {
+            const a = sideIndices[y][x];
+            const b = sideIndices[y + 1][x];
+            const c = sideIndices[y + 1][x + 1];
+            const d = sideIndices[y][x + 1];
+
+            faces.push(a, d, b);
+            faces.push(b, d, c);
+        }
+    }
+
+    // ----- Caps -----
+    const textureCapRadius = (textureBarrelSize - textureSideHeight) / 2 / textureBarrelSize;
+    const textureTopCenter = [1.0 - 3.0 * textureCapRadius, textureCapRadius];
+    const textureBtmCenter = [1.0 - 1.0 * textureCapRadius, textureCapRadius]
+
+    
+    function generateCap(top) {
+        const sign = top ? 1 : -1;
+        const radius = top ? radiusTop : radiusBottom;
+        const centerY = top ? halfHeight : -halfHeight;
+        const textureCenter = top? textureTopCenter: textureBtmCenter;
+
+        if (radius === 0) return;
+
+        const centerIndex = vertices.length / 3;
+        vertices.push(0, centerY, 0);
+        normals.push(0, sign, 0);
+        uvs.push(...textureCenter);
+
+        const ring = [];
+
+        for (let x = 0; x <= radialSegments; x++) {
+            const u = x / radialSegments;
+            const theta = u * Math.PI * 2;
+
+            const cos = Math.cos(theta);
+            const sin = Math.sin(theta);
+
+            const px = radius * cos;
+            const pz = radius * sin;
+
+            vertices.push(px, centerY, pz);
+            normals.push(0, sign, 0);
+
+            // Map cap to [0,1] UV space
+            const uvx = cos * textureCapRadius + textureCenter[0];
+            const uvy = sin * textureCapRadius + textureCenter[1];
+            uvs.push(uvx, uvy);
+
+            ring.push(vertices.length / 3 - 1);
+        }
+
+        for (let x = 0; x < radialSegments; x++) {
+            const a = centerIndex;
+            const b = ring[x];
+            const c = ring[x + 1];
+
+            if (top) {
+                faces.push(a, c, b);
+            } else {
+                faces.push(a, b, c);
+            }
+        }
+    }
+
+    if (!openEnded) {
+        generateCap(true);
+        generateCap(false);
+    }
+
+    return [
+        vertices, // Array<[x, y, z]>
+        faces,    // Array<[i0, i1, i2]>
+        normals,  // Array<[nx, ny, nz]> per vertex
+        uvs,      // Array<[u, v]> per vertex
+    ];
+}
+
+
+function createCamera() {
+    const aspect = canvas.clientWidth / canvas.clientHeight;
+    camera = new THREE.PerspectiveCamera(60, aspect, 0.1, 100);
+    camera.position.set(5, 5, 5);
+    scene.add(camera);
+}
+
+function createLight() {
+    const light = new THREE.AmbientLight(0xFFFFFF, 0.5);
+    scene.add(light);
+
+    const pointLight = new THREE.PointLight(0xff00ff, 1);
+    pointLight.position.set(0, 0.5, 1.0);
+    scene.add(pointLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(0, 0, 0);
+    directionalLight.target.position.set(0, 0, 0);
+
+    scene.add(directionalLight.target);
+    camera.add(directionalLight);
+
+}
+
+
+/** Updates the elements of the scene before the call to render */
+function update() {
+
+}
+
+/** Creates the scene and initalizes the elements in it **/
+function init() {
+    const canvas = document.querySelector('#canvas');
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color('#aaa');
+
+    createCamera();
+    createGeometry();
+    createLight();
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    //renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+    renderer.setAnimationLoop(() => {
+        update();
+        controls.update();
+        renderer.render(scene, camera);
+    });
+
+    // Helpers (could be removed!)
+    // ------------------------------------
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.update();
+
+    const gridHelper = new THREE.GridHelper(20, 20, '#bbb', '#999');
+    scene.add(gridHelper);
+
+    const axesHelper = new THREE.AxesHelper(2);
+    scene.add(axesHelper);
+}
+
+  </script>
+</body>
+
+</html>
