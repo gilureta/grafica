@@ -1,0 +1,797 @@
+<html lang="en" data-theme="light" translate="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style>.ͼ1.cm-focused {outline: 1px dotted #212121;}
+.ͼ1 {position: relative !important; box-sizing: border-box; display: flex !important; flex-direction: column;}
+.ͼ1 .cm-scroller {display: flex !important; align-items: flex-start !important; font-family: monospace; line-height: 1.4; height: 100%; overflow-x: auto; position: relative; z-index: 0; overflow-anchor: none;}
+.ͼ1 .cm-content[contenteditable=true] {-webkit-user-modify: read-write-plaintext-only;}
+.ͼ1 .cm-content {margin: 0; flex-grow: 2; flex-shrink: 0; display: block; white-space: pre; word-wrap: normal; box-sizing: border-box; min-height: 100%; padding: 4px 0; outline: none;}
+.ͼ1 .cm-lineWrapping {white-space: pre-wrap; white-space: break-spaces; word-break: break-word; overflow-wrap: anywhere; flex-shrink: 1;}
+.ͼ2 .cm-content {caret-color: black;}
+.ͼ3 .cm-content {caret-color: white;}
+.ͼ1 .cm-line {display: block; padding: 0 2px 0 6px;}
+.ͼ1 .cm-layer > * {position: absolute;}
+.ͼ1 .cm-layer {position: absolute; left: 0; top: 0; contain: size style;}
+.ͼ2 .cm-selectionBackground {background: #d9d9d9;}
+.ͼ3 .cm-selectionBackground {background: #222;}
+.ͼ2.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #d7d4f0;}
+.ͼ3.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #233;}
+.ͼ1 .cm-cursorLayer {pointer-events: none;}
+.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer {animation: steps(1) cm-blink 1.2s infinite;}
+@keyframes cm-blink {50% {opacity: 0;}}
+@keyframes cm-blink2 {50% {opacity: 0;}}
+.ͼ1 .cm-cursor, .ͼ1 .cm-dropCursor {border-left: 1.2px solid black; margin-left: -0.6px; pointer-events: none;}
+.ͼ1 .cm-cursor {display: none;}
+.ͼ3 .cm-cursor {border-left-color: #ddd;}
+.ͼ1 .cm-dropCursor {position: absolute;}
+.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer .cm-cursor {display: block;}
+.ͼ1 .cm-iso {unicode-bidi: isolate;}
+.ͼ1 .cm-announced {position: fixed; top: -10000px;}
+@media print {.ͼ1 .cm-announced {display: none;}}
+.ͼ2 .cm-activeLine {background-color: #cceeff44;}
+.ͼ3 .cm-activeLine {background-color: #99eeff33;}
+.ͼ2 .cm-specialChar {color: red;}
+.ͼ3 .cm-specialChar {color: #f78;}
+.ͼ1 .cm-gutters {flex-shrink: 0; display: flex; height: 100%; box-sizing: border-box; z-index: 200;}
+.ͼ1 .cm-gutters-before {inset-inline-start: 0;}
+.ͼ1 .cm-gutters-after {inset-inline-end: 0;}
+.ͼ2 .cm-gutters.cm-gutters-before {border-right-width: 1px;}
+.ͼ2 .cm-gutters.cm-gutters-after {border-left-width: 1px;}
+.ͼ2 .cm-gutters {background-color: #f5f5f5; color: #6c6c6c; border: 0px solid #ddd;}
+.ͼ3 .cm-gutters {background-color: #333338; color: #ccc;}
+.ͼ1 .cm-gutter {display: flex !important; flex-direction: column; flex-shrink: 0; box-sizing: border-box; min-height: 100%; overflow: hidden;}
+.ͼ1 .cm-gutterElement {box-sizing: border-box;}
+.ͼ1 .cm-lineNumbers .cm-gutterElement {padding: 0 3px 0 5px; min-width: 20px; text-align: right; white-space: nowrap;}
+.ͼ2 .cm-activeLineGutter {background-color: #e2f2ff;}
+.ͼ3 .cm-activeLineGutter {background-color: #222227;}
+.ͼ1 .cm-panels {box-sizing: border-box; position: sticky; left: 0; right: 0; z-index: 300;}
+.ͼ2 .cm-panels {background-color: #f5f5f5; color: black;}
+.ͼ2 .cm-panels-top {border-bottom: 1px solid #ddd;}
+.ͼ2 .cm-panels-bottom {border-top: 1px solid #ddd;}
+.ͼ3 .cm-panels {background-color: #333338; color: white;}
+.ͼ1 .cm-dialog label {font-size: 80%;}
+.ͼ1 .cm-dialog {padding: 2px 19px 4px 6px; position: relative;}
+.ͼ1 .cm-dialog-close {position: absolute; top: 3px; right: 4px; background-color: inherit; border: none; font: inherit; font-size: 14px; padding: 0;}
+.ͼ1 .cm-tab {display: inline-block; overflow: hidden; vertical-align: bottom;}
+.ͼ1 .cm-widgetBuffer {vertical-align: text-top; height: 1em; width: 0; display: inline;}
+.ͼ1 .cm-placeholder {color: #888; display: inline-block; vertical-align: top; user-select: none;}
+.ͼ1 .cm-highlightSpace {background-image: radial-gradient(circle at 50% 55%, #aaa 20%, transparent 5%); background-position: center;}
+.ͼ1 .cm-highlightTab {background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20"><path stroke="%23888" stroke-width="1" fill="none" d="M1 10H196L190 5M190 15L196 10M197 4L197 16"/></svg>'); background-size: auto 100%; background-position: right 90%; background-repeat: no-repeat;}
+.ͼ1 .cm-trailingSpace {background-color: #ff332255;}
+.ͼ1 .cm-button {vertical-align: middle; color: inherit; font-size: 70%; padding: .2em 1em; border-radius: 1px;}
+.ͼ2 .cm-button:active {background-image: linear-gradient(#b4b4b4, #d0d3d6);}
+.ͼ2 .cm-button {background-image: linear-gradient(#eff1f5, #d9d9df); border: 1px solid #888;}
+.ͼ3 .cm-button:active {background-image: linear-gradient(#111, #333);}
+.ͼ3 .cm-button {background-image: linear-gradient(#393939, #111); border: 1px solid #888;}
+.ͼ1 .cm-textfield {vertical-align: middle; color: inherit; font-size: 70%; border: 1px solid silver; padding: .2em .5em;}
+.ͼ2 .cm-textfield {background-color: white;}
+.ͼ3 .cm-textfield {border: 1px solid #555; background-color: inherit;}
+.ͼ1 .cm-selectionMatch {background-color: #99ff7780;}
+.ͼ1 .cm-searchMatch .cm-selectionMatch {background-color: transparent;}
+.ͼ1 .cm-tooltip.cm-tooltip-autocomplete > ul > li, .ͼ1 .cm-tooltip.cm-tooltip-autocomplete > ul > completion-section {padding: 1px 3px; line-height: 1.2;}
+.ͼ1 .cm-tooltip.cm-tooltip-autocomplete > ul > li {overflow-x: hidden; text-overflow: ellipsis; cursor: pointer;}
+.ͼ1 .cm-tooltip.cm-tooltip-autocomplete > ul > completion-section {display: list-item; border-bottom: 1px solid silver; padding-left: 0.5em; opacity: 0.7;}
+.ͼ1 .cm-tooltip.cm-tooltip-autocomplete > ul {font-family: monospace; white-space: nowrap; overflow: hidden auto; max-width: 700px; max-width: min(700px, 95vw); min-width: 250px; max-height: 10em; height: 100%; list-style: none; margin: 0; padding: 0;}
+.ͼ2 .cm-tooltip-autocomplete ul li[aria-selected] {background: #17c; color: white;}
+.ͼ2 .cm-tooltip-autocomplete-disabled ul li[aria-selected] {background: #777;}
+.ͼ3 .cm-tooltip-autocomplete ul li[aria-selected] {background: #347; color: white;}
+.ͼ3 .cm-tooltip-autocomplete-disabled ul li[aria-selected] {background: #444;}
+.ͼ1 .cm-completionListIncompleteTop:before, .ͼ1 .cm-completionListIncompleteBottom:after {content: "···"; opacity: 0.5; display: block; text-align: center;}
+.ͼ1 .cm-tooltip.cm-completionInfo {position: absolute; padding: 3px 9px; width: max-content; max-width: 400px; box-sizing: border-box; white-space: pre-line;}
+.ͼ1 .cm-completionInfo.cm-completionInfo-left {right: 100%;}
+.ͼ1 .cm-completionInfo.cm-completionInfo-right {left: 100%;}
+.ͼ1 .cm-completionInfo.cm-completionInfo-left-narrow {right: 30px;}
+.ͼ1 .cm-completionInfo.cm-completionInfo-right-narrow {left: 30px;}
+.ͼ2 .cm-snippetField {background-color: #00000022;}
+.ͼ3 .cm-snippetField {background-color: #ffffff22;}
+.ͼ1 .cm-snippetFieldPosition {vertical-align: text-top; width: 0; height: 1.15em; display: inline-block; margin: 0 -0.7px -.7em; border-left: 1.4px dotted #888;}
+.ͼ1 .cm-completionMatchedText {text-decoration: underline;}
+.ͼ1 .cm-completionDetail {margin-left: 0.5em; font-style: italic;}
+.ͼ1 .cm-completionIcon {font-size: 90%; width: .8em; display: inline-block; text-align: center; padding-right: .6em; opacity: 0.6; box-sizing: content-box;}
+.ͼ1 .cm-completionIcon-function:after, .ͼ1 .cm-completionIcon-method:after {content: 'ƒ';}
+.ͼ1 .cm-completionIcon-class:after {content: '○';}
+.ͼ1 .cm-completionIcon-interface:after {content: '◌';}
+.ͼ1 .cm-completionIcon-variable:after {content: '𝑥';}
+.ͼ1 .cm-completionIcon-constant:after {content: '𝐶';}
+.ͼ1 .cm-completionIcon-type:after {content: '𝑡';}
+.ͼ1 .cm-completionIcon-enum:after {content: '∪';}
+.ͼ1 .cm-completionIcon-property:after {content: '□';}
+.ͼ1 .cm-completionIcon-keyword:after {content: '🔑︎';}
+.ͼ1 .cm-completionIcon-namespace:after {content: '▢';}
+.ͼ1 .cm-completionIcon-text:after {content: 'abc'; font-size: 50%; vertical-align: middle;}
+.ͼ1 .cm-tooltip {z-index: 500; box-sizing: border-box;}
+.ͼ2 .cm-tooltip {border: 1px solid #bbb; background-color: #f5f5f5;}
+.ͼ2 .cm-tooltip-section:not(:first-child) {border-top: 1px solid #bbb;}
+.ͼ3 .cm-tooltip {background-color: #333338; color: white;}
+.ͼ1 .cm-tooltip-arrow:before, .ͼ1 .cm-tooltip-arrow:after {content: ''; position: absolute; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent;}
+.ͼ1 .cm-tooltip-above .cm-tooltip-arrow:before {border-top: 7px solid #bbb;}
+.ͼ1 .cm-tooltip-above .cm-tooltip-arrow:after {border-top: 7px solid #f5f5f5; bottom: 1px;}
+.ͼ1 .cm-tooltip-above .cm-tooltip-arrow {bottom: -7px;}
+.ͼ1 .cm-tooltip-below .cm-tooltip-arrow:before {border-bottom: 7px solid #bbb;}
+.ͼ1 .cm-tooltip-below .cm-tooltip-arrow:after {border-bottom: 7px solid #f5f5f5; top: 1px;}
+.ͼ1 .cm-tooltip-below .cm-tooltip-arrow {top: -7px;}
+.ͼ1 .cm-tooltip-arrow {height: 7px; width: 14px; position: absolute; z-index: -1; overflow: hidden;}
+.ͼ3 .cm-tooltip .cm-tooltip-arrow:before {border-top-color: #333338; border-bottom-color: #333338;}
+.ͼ3 .cm-tooltip .cm-tooltip-arrow:after {border-top-color: transparent; border-bottom-color: transparent;}
+.ͼ1.cm-focused .cm-matchingBracket {background-color: #328c8252;}
+.ͼ1.cm-focused .cm-nonmatchingBracket {background-color: #bb555544;}
+.ͼ1 .cm-foldPlaceholder {background-color: #eee; border: 1px solid #ddd; color: #888; border-radius: .2em; margin: 0 1px; padding: 0 1px; cursor: pointer;}
+.ͼ1 .cm-foldGutter span {padding: 0 1px; cursor: pointer;}
+.ͼp {color: #c678dd;}
+.ͼq {color: #e06c75;}
+.ͼr {color: #61afef;}
+.ͼs {color: #d19a66;}
+.ͼt {color: #abb2bf;}
+.ͼu {color: #e5c07b;}
+.ͼv {color: #56b6c2;}
+.ͼw {color: #7d8799;}
+.ͼx {font-weight: bold;}
+.ͼy {font-style: italic;}
+.ͼz {text-decoration: line-through;}
+.ͼ10 {color: #7d8799; text-decoration: underline;}
+.ͼ11 {font-weight: bold; color: #e06c75;}
+.ͼ12 {color: #d19a66;}
+.ͼ13 {color: #98c379;}
+.ͼ14 {color: #ffffff;}
+.ͼo {color: #abb2bf; background-color: #282c34;}
+.ͼo .cm-content {caret-color: #528bff;}
+.ͼo .cm-cursor, .ͼo .cm-dropCursor {border-left-color: #528bff;}
+.ͼo.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground, .ͼo .cm-selectionBackground, .ͼo .cm-content ::selection {background-color: #3E4451;}
+.ͼo .cm-panels {background-color: #21252b; color: #abb2bf;}
+.ͼo .cm-panels.cm-panels-top {border-bottom: 2px solid black;}
+.ͼo .cm-panels.cm-panels-bottom {border-top: 2px solid black;}
+.ͼo .cm-searchMatch {background-color: #72a1ff59; outline: 1px solid #457dff;}
+.ͼo .cm-searchMatch.cm-searchMatch-selected {background-color: #6199ff2f;}
+.ͼo .cm-activeLine {background-color: #6699ff0b;}
+.ͼo .cm-selectionMatch {background-color: #aafe661a;}
+.ͼo.cm-focused .cm-matchingBracket, .ͼo.cm-focused .cm-nonmatchingBracket {background-color: #bad0f847;}
+.ͼo .cm-gutters {background-color: #282c34; color: #7d8799; border: none;}
+.ͼo .cm-activeLineGutter {background-color: #2c313a;}
+.ͼo .cm-foldPlaceholder {background-color: transparent; border: none; color: #ddd;}
+.ͼo .cm-tooltip {border: none; background-color: #353a42;}
+.ͼo .cm-tooltip .cm-tooltip-arrow:before {border-top-color: transparent; border-bottom-color: transparent;}
+.ͼo .cm-tooltip .cm-tooltip-arrow:after {border-top-color: #353a42; border-bottom-color: #353a42;}
+.ͼo .cm-tooltip-autocomplete > ul > li[aria-selected] {background-color: #2c313a; color: #abb2bf;}
+.ͼ5 {color: #404740;}
+.ͼ6 {text-decoration: underline;}
+.ͼ7 {text-decoration: underline; font-weight: bold;}
+.ͼ8 {font-style: italic;}
+.ͼ9 {font-weight: bold;}
+.ͼa {text-decoration: line-through;}
+.ͼb {color: #708;}
+.ͼc {color: #219;}
+.ͼd {color: #164;}
+.ͼe {color: #a11;}
+.ͼf {color: #e40;}
+.ͼg {color: #00f;}
+.ͼh {color: #30a;}
+.ͼi {color: #085;}
+.ͼj {color: #167;}
+.ͼk {color: #256;}
+.ͼl {color: #00c;}
+.ͼm {color: #940;}
+.ͼn {color: #f00;}
+.ͼ4 .cm-line ::selection, .ͼ4 .cm-line::selection {background-color: transparent !important;}
+.ͼ4 .cm-line {caret-color: transparent !important;}
+.ͼ4 .cm-content :focus::selection, .ͼ4 .cm-content :focus ::selection {background-color: Highlight !important;}
+.ͼ4 .cm-content :focus {caret-color: initial !important;}
+.ͼ4 .cm-content {caret-color: transparent !important;}
+</style>
+ 
+  <!-- Canonical URL set by individual pages -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- PWA Support -->
+
+  <meta name="theme-color" content="#4a90e2">
+
+  <!-- Preload critical fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200&amp;display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400&amp;display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:700&amp;display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" as="style">
+
+
+
+<link rel="stylesheet" href="./sync_files/0.c4b7f32b.css">
+
+<!-- <link rel="stylesheet" href="./sync_files/Header.db767d04.css"> -->
+<link rel="stylesheet" href="./sync_files/Renderer.2697d0c0.css">
+
+<link rel="stylesheet" href="./sync_files/3.b173f881.css">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+
+<link rel="stylesheet" href="./sync_files/style.91082e80.css">
+<link rel="stylesheet" href="./sync_files/style.43d7c5da.css">
+
+
+<style id="__web-inspector-hide-shortcut-style__">
+.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *
+{
+    visibility: hidden !important;
+}
+</style></head>
+<body data-sveltekit-preload-data="hover" class="font-inter my-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXT6VN7W" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div style="display: contents"> <div class="notRounded px-3 py-0" style="max-width: 1000px; margin: auto;">    <div class="theme-light relative  svelte-1x6a8vq"><iframe style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;" aria-hidden="true" tabindex="-1" src="sync_files/a_002.htm"></iframe><div class="modal "><div role="button" tabindex="0" class="modal-background blackglass"></div> <div class="modal-content"><div class="box"><div class="subtitle has-text-centered"><strong>Your payment could not be processed</strong></div> <div class="flex items-center" style="margin: auto; width: 150px;"><img class="pb-3" src="sync_files/Mago-sync2.gif" alt="Logo"></div> <div class="has-text-centered mb-4">Your card was declined or expired. Update your payment method to keep your PRO access.</div> <div class="buttons has-addons is-centered"><div class="notRounded w-50 px-2 py-1"><div class="p-0.5 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-blue-800/80 rounded-full"><button type="button" class="text-center font-medium focus-within:ring-4 focus-within:outline-none px-5 py-2.5 text-sm rounded-full inline-flex items-center justify-center w-full !border-0 bg-white !text-gray-900 dark:bg-gray-900 dark:!text-white hover:bg-transparent hover:!text-inherit transition-all duration-75 ease-in group-hover:!bg-opacity-0 group-hover:!text-inherit"><span class="material-symbols-outlined notranslate mr-1">credit_card</span> <span>Update payment method</span></button></div></div></div> <div class="has-text-centered"><button class="button is-small is-text">Remind me later</button></div></div></div></div> <div style="position: relative;"><div class="0 svelte-cbffuh" style="; background-color: undefined"><div style=""><div class="content svelte-cbffuh" style="; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column mt-4  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/c2e55743-9032-474a-8a31-5881499b6dcd.png"><img class="is-rounded  svelte-1truct9" src="sync_files/c2e55743-9032-474a-8a31-5881499b6dcd.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/c2e55743-9032-474a-8a31-5881499b6dcd.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="markup-viewer svelte-wpayk8"><div class="milkdown"><div contenteditable="false" translate="no" class="ProseMirror virtual-cursor-enabled editor" role="textbox"><div contenteditable="false" class="prosemirror-virtual-cursor prosemirror-virtual-cursor-animation" style="height: 19.2667px; left: 12px; top: 8453.45px;"></div><p><strong>IIC3912 - Tópicos Avanzados de Gráfica Computacional</strong><br data-type="hardbreak" data-is-inline="false">Francisca T. Gil-Ureta ⋅ 2026</p><h3 id="clase-7-|-ray-tracing"><strong>Clase 7 | Ray Tracing</strong></h3><h6 id="pintando-cada-pixel">Pintando cada pixel</h6></div><div style="position: fixed; pointer-events: none; display: none; top: 0px; left: 0px;" class="crepe-drop-cursor milkdown-drop-indicator"></div><div class="milkdown-link-preview" data-v-app="" data-show="false"><div class="link-preview"><span class="milkdown-icon button link-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none">
+    <path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"></path>
+  </svg></span><a href="" target="_blank" class="link-display"></a><span class="milkdown-icon button link-edit-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_1013_1585)">
+      <path d="M14.06 9.02L14.98 9.94L5.92 19H5V18.08L14.06 9.02ZM17.66 3C17.41 3 17.15 3.1 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C18.17 3.09 17.92 3 17.66 3ZM14.06 6.19L3 17.25V21H6.75L17.81 9.94L14.06 6.19Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_1013_1585">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span class="milkdown-icon button link-remove-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M7.30775 20.4997C6.81058 20.4997 6.385 20.3227 6.031 19.9687C5.677 19.6147 5.5 19.1892 5.5 18.692V5.99973H5.25C5.0375 5.99973 4.85942 5.92782 4.71575 5.78398C4.57192 5.64015 4.5 5.46198 4.5 5.24948C4.5 5.03682 4.57192 4.85873 4.71575 4.71523C4.85942 4.57157 5.0375 4.49973 5.25 4.49973H9C9 4.2549 9.08625 4.04624 9.25875 3.87374C9.43108 3.7014 9.63967 3.61523 9.8845 3.61523H14.1155C14.3603 3.61523 14.5689 3.7014 14.7413 3.87374C14.9138 4.04624 15 4.2549 15 4.49973H18.75C18.9625 4.49973 19.1406 4.57165 19.2843 4.71548C19.4281 4.85932 19.5 5.03748 19.5 5.24998C19.5 5.46265 19.4281 5.64073 19.2843 5.78423C19.1406 5.9279 18.9625 5.99973 18.75 5.99973H18.5V18.692C18.5 19.1892 18.323 19.6147 17.969 19.9687C17.615 20.3227 17.1894 20.4997 16.6923 20.4997H7.30775ZM17 5.99973H7V18.692C7 18.7818 7.02883 18.8556 7.0865 18.9132C7.14417 18.9709 7.21792 18.9997 7.30775 18.9997H16.6923C16.7821 18.9997 16.8558 18.9709 16.9135 18.9132C16.9712 18.8556 17 18.7818 17 18.692V5.99973ZM10.1543 16.9997C10.3668 16.9997 10.5448 16.9279 10.6885 16.7842C10.832 16.6404 10.9037 16.4622 10.9037 16.2497V8.74973C10.9037 8.53723 10.8318 8.35907 10.688 8.21523C10.5443 8.07157 10.3662 7.99973 10.1535 7.99973C9.941 7.99973 9.76292 8.07157 9.61925 8.21523C9.47575 8.35907 9.404 8.53723 9.404 8.74973V16.2497C9.404 16.4622 9.47583 16.6404 9.6195 16.7842C9.76333 16.9279 9.94158 16.9997 10.1543 16.9997ZM13.8465 16.9997C14.059 16.9997 14.2371 16.9279 14.3807 16.7842C14.5243 16.6404 14.596 16.4622 14.596 16.2497V8.74973C14.596 8.53723 14.5242 8.35907 14.3805 8.21523C14.2367 8.07157 14.0584 7.99973 13.8458 7.99973C13.6333 7.99973 13.4552 8.07157 13.3115 8.21523C13.168 8.35907 13.0962 8.53723 13.0962 8.74973V16.2497C13.0962 16.4622 13.1682 16.6404 13.312 16.7842C13.4557 16.9279 13.6338 16.9997 13.8465 16.9997Z"></path>
+  </svg></span></div></div><div class="milkdown-link-edit" data-v-app="" data-show="false"><div class="link-edit"><input class="input-area" placeholder="Paste link..."><!----></div></div><div class="milkdown-toolbar" data-v-app="" data-show="false"><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M8.85758 18.625C8.4358 18.625 8.07715 18.4772 7.78163 18.1817C7.48613 17.8862 7.33838 17.5275 7.33838 17.1058V6.8942C7.33838 6.47242 7.48613 6.11377 7.78163 5.81825C8.07715 5.52275 8.4358 5.375 8.85758 5.375H12.1999C13.2191 5.375 14.1406 5.69231 14.9643 6.32693C15.788 6.96154 16.1999 7.81603 16.1999 8.89038C16.1999 9.63779 16.0194 10.2471 15.6585 10.7183C15.2976 11.1894 14.9088 11.5314 14.4922 11.7442C15.005 11.9211 15.4947 12.2708 15.9614 12.7933C16.428 13.3157 16.6614 14.0192 16.6614 14.9038C16.6614 16.182 16.1902 17.1217 15.2479 17.723C14.3056 18.3243 13.3563 18.625 12.3999 18.625H8.85758ZM9.4883 16.6327H12.3191C13.1063 16.6327 13.6627 16.4141 13.9884 15.9769C14.314 15.5397 14.4768 15.1205 14.4768 14.7192C14.4768 14.3179 14.314 13.8987 13.9884 13.4615C13.6627 13.0243 13.0909 12.8057 12.273 12.8057H9.4883V16.6327ZM9.4883 10.875H12.0826C12.6903 10.875 13.172 10.7013 13.5278 10.3539C13.8836 10.0064 14.0615 9.59037 14.0615 9.10575C14.0615 8.59035 13.8733 8.16918 13.497 7.84225C13.1207 7.51533 12.6595 7.35188 12.1133 7.35188H9.4883V10.875Z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M6.29811 18.625C6.04505 18.625 5.83115 18.5375 5.65641 18.3626C5.48166 18.1877 5.39429 17.9736 5.39429 17.7203C5.39429 17.467 5.48166 17.2532 5.65641 17.0788C5.83115 16.9045 6.04505 16.8173 6.29811 16.8173H9.21159L12.452 7.18265H9.53851C9.28545 7.18265 9.07155 7.0952 8.89681 6.9203C8.72206 6.7454 8.63469 6.5313 8.63469 6.278C8.63469 6.02472 8.72206 5.81089 8.89681 5.63652C9.07155 5.46217 9.28545 5.375 9.53851 5.375H16.8847C17.1377 5.375 17.3516 5.46245 17.5264 5.63735C17.7011 5.81225 17.7885 6.02634 17.7885 6.27962C17.7885 6.53293 17.7011 6.74676 17.5264 6.92113C17.3516 7.09548 17.1377 7.18265 16.8847 7.18265H14.2789L11.0385 16.8173H13.6443C13.8973 16.8173 14.1112 16.9048 14.286 17.0797C14.4607 17.2546 14.5481 17.4687 14.5481 17.722C14.5481 17.9752 14.4607 18.1891 14.286 18.3634C14.1112 18.5378 13.8973 18.625 13.6443 18.625H6.29811Z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M3.25 13.7404C3.0375 13.7404 2.85938 13.6684 2.71563 13.5246C2.57188 13.3808 2.5 13.2026 2.5 12.99C2.5 12.7774 2.57188 12.5993 2.71563 12.4558C2.85938 12.3122 3.0375 12.2404 3.25 12.2404H20.75C20.9625 12.2404 21.1406 12.3123 21.2843 12.4561C21.4281 12.5999 21.5 12.7781 21.5 12.9907C21.5 13.2033 21.4281 13.3814 21.2843 13.525C21.1406 13.6686 20.9625 13.7404 20.75 13.7404H3.25ZM10.9423 10.2596V6.62495H6.5673C6.2735 6.62495 6.02377 6.52201 5.8181 6.31613C5.61245 6.11026 5.50963 5.86027 5.50963 5.56615C5.50963 5.27205 5.61245 5.02083 5.8181 4.8125C6.02377 4.60417 6.2735 4.5 6.5673 4.5H17.4423C17.7361 4.5 17.9858 4.60294 18.1915 4.80883C18.3971 5.01471 18.5 5.2647 18.5 5.5588C18.5 5.85292 18.3971 6.10413 18.1915 6.31245C17.9858 6.52078 17.7361 6.62495 17.4423 6.62495H13.0673V10.2596H10.9423ZM10.9423 15.7211H13.0673V18.4423C13.0673 18.7361 12.9643 18.9858 12.7584 19.1915C12.5526 19.3971 12.3026 19.5 12.0085 19.5C11.7144 19.5 11.4631 19.3962 11.2548 19.1887C11.0465 18.9811 10.9423 18.7291 10.9423 18.4327V15.7211Z"></path>
+  </svg></span></button><div class="divider"></div><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8081)">
+      <path d="M9.4 16.6L4.8 12L9.4 7.4L8 6L2 12L8 18L9.4 16.6ZM14.6 16.6L19.2 12L14.6 7.4L16 6L22 12L16 18L14.6 16.6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8081">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M7 19v-.808L13.096 12L7 5.808V5h10v1.25H9.102L14.727 12l-5.625 5.77H17V19z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M17.0385 19.5003V16.5388H14.0769V15.0388H17.0385V12.0773H18.5384V15.0388H21.5V16.5388H18.5384V19.5003H17.0385ZM10.8077 16.5388H7.03845C5.78282 16.5388 4.7125 16.0963 3.8275 15.2114C2.9425 14.3266 2.5 13.2564 2.5 12.0009C2.5 10.7454 2.9425 9.67504 3.8275 8.78979C4.7125 7.90454 5.78282 7.46191 7.03845 7.46191H10.8077V8.96186H7.03845C6.1987 8.96186 5.48235 9.25834 4.8894 9.85129C4.29645 10.4442 3.99998 11.1606 3.99998 12.0003C3.99998 12.8401 4.29645 13.5564 4.8894 14.1494C5.48235 14.7423 6.1987 15.0388 7.03845 15.0388H10.8077V16.5388ZM8.25 12.7503V11.2504H15.75V12.7503H8.25ZM21.5 12.0003H20C20 11.1606 19.7035 10.4442 19.1106 9.85129C18.5176 9.25834 17.8013 8.96186 16.9615 8.96186H13.1923V7.46191H16.9615C18.2171 7.46191 19.2875 7.90441 20.1725 8.78939C21.0575 9.67439 21.5 10.7447 21.5 12.0003Z"></path>
+  </svg></span></button></div><div class="milkdown-latex-inline-edit" data-v-app="" data-show="false"><div class="container"><div></div><button type="button"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <g clip-path="url(#clip0_1013_1606)">
+      <path d="M9.00012 16.1998L5.50012 12.6998C5.11012 12.3098 4.49012 12.3098 4.10012 12.6998C3.71012 13.0898 3.71012 13.7098 4.10012 14.0998L8.29012 18.2898C8.68012 18.6798 9.31012 18.6798 9.70012 18.2898L20.3001 7.69982C20.6901 7.30982 20.6901 6.68982 20.3001 6.29982C19.9101 5.90982 19.2901 5.90982 18.9001 6.29982L9.00012 16.1998Z" fill="#817567"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_1013_1606">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></button></div></div><div class="milkdown-block-handle" data-v-app="" data-show="false" draggable="true"><div class="operation-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_971_7676)">
+      <path d="M18 13H13V18C13 18.55 12.55 19 12 19C11.45 19 11 18.55 11 18V13H6C5.45 13 5 12.55 5 12C5 11.45 5.45 11 6 11H11V6C11 5.45 11.45 5 12 5C12.55 5 13 5.45 13 6V11H18C18.55 11 19 11.45 19 12C19 12.55 18.55 13 18 13Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_971_7676">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></div><div class="operation-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_971_7680)">
+      <path d="M11 18C11 19.1 10.1 20 9 20C7.9 20 7 19.1 7 18C7 16.9 7.9 16 9 16C10.1 16 11 16.9 11 18ZM9 10C7.9 10 7 10.9 7 12C7 13.1 7.9 14 9 14C10.1 14 11 13.1 11 12C11 10.9 10.1 10 9 10ZM9 4C7.9 4 7 4.9 7 6C7 7.1 7.9 8 9 8C10.1 8 11 7.1 11 6C11 4.9 10.1 4 9 4ZM15 8C16.1 8 17 7.1 17 6C17 4.9 16.1 4 15 4C13.9 4 13 4.9 13 6C13 7.1 13.9 8 15 8ZM15 10C13.9 10 13 10.9 13 12C13 13.1 13.9 14 15 14C16.1 14 17 13.1 17 12C17 10.9 16.1 10 15 10ZM15 16C13.9 16 13 16.9 13 18C13 19.1 13.9 20 15 20C16.1 20 17 19.1 17 18C17 16.9 16.1 16 15 16Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_971_7680">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></div></div><div class="milkdown-slash-menu" data-v-app="" data-show="false"><div><nav class="tab-group"><ul><li class="selected">Text</li><li class="">List</li><li class="">Advanced</li></ul></nav><div class="menu-groups"><div class="menu-group"><h6>Text</h6><ul><li data-index="0" class="hover"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5547)">
+      <path d="M5 5.5C5 6.33 5.67 7 6.5 7H10.5V17.5C10.5 18.33 11.17 19 12 19C12.83 19 13.5 18.33 13.5 17.5V7H17.5C18.33 7 19 6.33 19 5.5C19 4.67 18.33 4 17.5 4H6.5C5.67 4 5 4.67 5 5.5Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5547">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Text</span></li><li data-index="1" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5553)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM12 17H14V7H10V9H12V17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5553">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 1</span></li><li data-index="2" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5559)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15H11V13H13C14.1 13 15 12.11 15 11V9C15 7.89 14.1 7 13 7H9V9H13V11H11C9.9 11 9 11.89 9 13V17H15V15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5559">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 2</span></li><li data-index="3" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5565)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13.5C15 12.67 14.33 12 13.5 12C14.33 12 15 11.33 15 10.5V9C15 7.89 14.1 7 13 7H9V9H13V11H11V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5565">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 3</span></li><li data-index="4" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7757)">
+      <path d="M19.04 3H5.04004C3.94004 3 3.04004 3.9 3.04004 5V19C3.04004 20.1 3.94004 21 5.04004 21H19.04C20.14 21 21.04 20.1 21.04 19V5C21.04 3.9 20.14 3 19.04 3ZM19.04 19H5.04004V5H19.04V19ZM13.04 17H15.04V7H13.04V11H11.04V7H9.04004V13H13.04V17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7757">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 4</span></li><li data-index="5" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7760)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13C15 11.89 14.1 11 13 11H11V9H15V7H9V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7760">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 5</span></li><li data-index="6" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7763)">
+      <path d="M11 17H13C14.1 17 15 16.11 15 15V13C15 11.89 14.1 11 13 11H11V9H15V7H11C9.9 7 9 7.89 9 9V15C9 16.11 9.9 17 11 17ZM11 13H13V15H11V13ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7763">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 6</span></li><li data-index="7" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7897)">
+      <path d="M7.17 17C7.68 17 8.15 16.71 8.37 16.26L9.79 13.42C9.93 13.14 10 12.84 10 12.53V8C10 7.45 9.55 7 9 7H5C4.45 7 4 7.45 4 8V12C4 12.55 4.45 13 5 13H7L5.97 15.06C5.52 15.95 6.17 17 7.17 17ZM17.17 17C17.68 17 18.15 16.71 18.37 16.26L19.79 13.42C19.93 13.14 20 12.84 20 12.53V8C20 7.45 19.55 7 19 7H15C14.45 7 14 7.45 14 8V12C14 12.55 14.45 13 15 13H17L15.97 15.06C15.52 15.95 16.17 17 17.17 17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7897">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Quote</span></li><li data-index="8" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7900)">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M19 13H5C4.45 13 4 12.55 4 12C4 11.45 4.45 11 5 11H19C19.55 11 20 11.45 20 12C20 12.55 19.55 13 19 13Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7900">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Divider</span></li></ul></div><div class="menu-group"><h6>List</h6><ul><li data-index="9" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8070)">
+      <path d="M4 10.5C3.17 10.5 2.5 11.17 2.5 12C2.5 12.83 3.17 13.5 4 13.5C4.83 13.5 5.5 12.83 5.5 12C5.5 11.17 4.83 10.5 4 10.5ZM4 4.5C3.17 4.5 2.5 5.17 2.5 6C2.5 6.83 3.17 7.5 4 7.5C4.83 7.5 5.5 6.83 5.5 6C5.5 5.17 4.83 4.5 4 4.5ZM4 16.5C3.17 16.5 2.5 17.18 2.5 18C2.5 18.82 3.18 19.5 4 19.5C4.82 19.5 5.5 18.82 5.5 18C5.5 17.18 4.83 16.5 4 16.5ZM8 19H20C20.55 19 21 18.55 21 18C21 17.45 20.55 17 20 17H8C7.45 17 7 17.45 7 18C7 18.55 7.45 19 8 19ZM8 13H20C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11H8C7.45 11 7 11.45 7 12C7 12.55 7.45 13 8 13ZM7 6C7 6.55 7.45 7 8 7H20C20.55 7 21 6.55 21 6C21 5.45 20.55 5 20 5H8C7.45 5 7 5.45 7 6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8070">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Bullet List</span></li><li data-index="10" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8067)">
+      <path d="M8 7H20C20.55 7 21 6.55 21 6C21 5.45 20.55 5 20 5H8C7.45 5 7 5.45 7 6C7 6.55 7.45 7 8 7ZM20 17H8C7.45 17 7 17.45 7 18C7 18.55 7.45 19 8 19H20C20.55 19 21 18.55 21 18C21 17.45 20.55 17 20 17ZM20 11H8C7.45 11 7 11.45 7 12C7 12.55 7.45 13 8 13H20C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11ZM4.5 16H2.5C2.22 16 2 16.22 2 16.5C2 16.78 2.22 17 2.5 17H4V17.5H3.5C3.22 17.5 3 17.72 3 18C3 18.28 3.22 18.5 3.5 18.5H4V19H2.5C2.22 19 2 19.22 2 19.5C2 19.78 2.22 20 2.5 20H4.5C4.78 20 5 19.78 5 19.5V16.5C5 16.22 4.78 16 4.5 16ZM2.5 5H3V7.5C3 7.78 3.22 8 3.5 8C3.78 8 4 7.78 4 7.5V4.5C4 4.22 3.78 4 3.5 4H2.5C2.22 4 2 4.22 2 4.5C2 4.78 2.22 5 2.5 5ZM4.5 10H2.5C2.22 10 2 10.22 2 10.5C2 10.78 2.22 11 2.5 11H3.8L2.12 12.96C2.04 13.05 2 13.17 2 13.28V13.5C2 13.78 2.22 14 2.5 14H4.5C4.78 14 5 13.78 5 13.5C5 13.22 4.78 13 4.5 13H3.2L4.88 11.04C4.96 10.95 5 10.83 5 10.72V10.5C5 10.22 4.78 10 4.5 10Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8067">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Ordered List</span></li><li data-index="11" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M5.66936 16.3389L9.39244 12.6158C9.54115 12.4671 9.71679 12.3937 9.91936 12.3957C10.1219 12.3976 10.2975 12.4761 10.4463 12.6312C10.5847 12.7823 10.654 12.9585 10.654 13.1599C10.654 13.3613 10.5847 13.5363 10.4463 13.6851L6.32704 17.8197C6.14627 18.0004 5.93538 18.0908 5.69436 18.0908C5.45333 18.0908 5.24243 18.0004 5.06166 17.8197L3.01744 15.7754C2.87899 15.637 2.81136 15.4629 2.81456 15.2533C2.81776 15.0437 2.88859 14.8697 3.02706 14.7312C3.16551 14.5928 3.34008 14.5235 3.55076 14.5235C3.76144 14.5235 3.93494 14.5928 4.07126 14.7312L5.66936 16.3389ZM5.66936 8.72359L9.39244 5.00049C9.54115 4.85177 9.71679 4.77838 9.91936 4.78031C10.1219 4.78223 10.2975 4.86075 10.4463 5.01586C10.5847 5.16691 10.654 5.34314 10.654 5.54454C10.654 5.74592 10.5847 5.92097 10.4463 6.06969L6.32704 10.2043C6.14627 10.3851 5.93538 10.4755 5.69436 10.4755C5.45333 10.4755 5.24243 10.3851 5.06166 10.2043L3.01744 8.16009C2.87899 8.02162 2.81136 7.84759 2.81456 7.63799C2.81776 7.42837 2.88859 7.25433 3.02706 7.11586C3.16551 6.97741 3.34008 6.90819 3.55076 6.90819C3.76144 6.90819 3.93494 6.97741 4.07126 7.11586L5.66936 8.72359ZM13.7597 16.5581C13.5472 16.5581 13.3691 16.4862 13.2253 16.3424C13.0816 16.1986 13.0097 16.0204 13.0097 15.8078C13.0097 15.5952 13.0816 15.4171 13.2253 15.2735C13.3691 15.13 13.5472 15.0582 13.7597 15.0582H20.7597C20.9722 15.0582 21.1503 15.1301 21.2941 15.2739C21.4378 15.4177 21.5097 15.5959 21.5097 15.8085C21.5097 16.0211 21.4378 16.1992 21.2941 16.3427C21.1503 16.4863 20.9722 16.5581 20.7597 16.5581H13.7597ZM13.7597 8.94276C13.5472 8.94276 13.3691 8.87085 13.2253 8.72704C13.0816 8.58324 13.0097 8.40504 13.0097 8.19244C13.0097 7.97985 13.0816 7.80177 13.2253 7.65819C13.3691 7.5146 13.5472 7.44281 13.7597 7.44281H20.7597C20.9722 7.44281 21.1503 7.51471 21.2941 7.65851C21.4378 7.80233 21.5097 7.98053 21.5097 8.19311C21.5097 8.40571 21.4378 8.5838 21.2941 8.72739C21.1503 8.87097 20.9722 8.94276 20.7597 8.94276H13.7597Z"></path>
+  </svg></span><span>Task List</span></li></ul></div><div class="menu-group"><h6>Advanced</h6><ul><li data-index="12" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8075)">
+      <path d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM14.14 11.86L11.14 15.73L9 13.14L6 17H18L14.14 11.86Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8075">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Image</span></li><li data-index="13" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8081)">
+      <path d="M9.4 16.6L4.8 12L9.4 7.4L8 6L2 12L8 18L9.4 16.6ZM14.6 16.6L19.2 12L14.6 7.4L16 6L22 12L16 18L14.6 16.6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8081">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Code</span></li><li data-index="14" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8078)">
+      <path d="M20 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3ZM20 5V8H5V5H20ZM15 19H10V10H15V19ZM5 10H8V19H5V10ZM17 19V10H20V19H17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8078">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Table</span></li><li data-index="15" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M7 19v-.808L13.096 12L7 5.808V5h10v1.25H9.102L14.727 12l-5.625 5.77H17V19z"></path>
+  </svg></span><span>Math</span></li></ul></div></div></div></div></div></div> </div> </div> </div> <div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column is-hidden svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style=""><img class="is-rounded  svelte-1truct9" style=""></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><p><strong style="background-color: transparent; color: rgb(0, 0, 0);">Clase 06 -</strong><span style="background-color: transparent; color: rgb(0, 0, 0);"> Después de esta clase los estudiantes pueden explicar el modelo de cámara pinhole, distinguir entre parámetros intrínsecos y extrínsecos, y calcular una configuración de cámara que encuadre un objeto dentro del frustum.</span></p><p><strong style="background-color: transparent; color: rgb(0, 0, 0);">Clase 07 - </strong><span style="background-color: transparent; color: rgb(0, 0, 0);">Después de esta clase los estudiantes pueden </span><strong style="background-color: transparent; color: rgb(0, 0, 0);">generar rayos </strong><span style="background-color: transparent; color: rgb(0, 0, 0);">desde una cámara para calcular una imagen, </span><strong style="background-color: transparent; color: rgb(0, 0, 0);">identificar intersecciones</strong><span style="background-color: transparent; color: rgb(0, 0, 0);"> con la geometría de la escena y </span><strong style="background-color: transparent; color: rgb(0, 0, 0);">explicar </strong><span style="background-color: transparent; color: rgb(0, 0, 0);">cómo el color de cada píxel se determina a partir del primer objeto intersectado.</span></p> </div></div> </div> </div> </div> <div style=""><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column is-hidden svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style=""><img class="is-rounded  svelte-1truct9" style=""></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h1>Rendering</h1><p>Es el proceso que toma como <em>input</em> un set de objetos y produce como <em>output</em> un arreglo de pixeles. Rendering involucra <span style="background-color: rgb(235, 214, 255);">considerar cómo cada objeto contribuye al color de cada pixel.</span></p><p><strong>Objecto-order rendering (e.g., rasterización): </strong>para cada objeto, encontramos los pixeles que influencia y los actualizamos.</p><p><strong>Image-order rendering (e.g., ray-tracing): </strong>para cada pixel, encontramos todos los objetos que influencian su color y calculamos el color del pixel.</p> </div></div> </div> </div> <div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/26214b1f-0f4c-4b46-9ff6-e2c2a3ee4eb5.jpeg"><img class="is-rounded  svelte-1truct9" src="sync_files/26214b1f-0f4c-4b46-9ff6-e2c2a3ee4eb5.jpeg" style="https://s3.amazonaws.com/assets.yeira.io/persist/26214b1f-0f4c-4b46-9ff6-e2c2a3ee4eb5.jpeg"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><p>🎨 Image-order rendering es más simple de implementar (versión básica), y más flexible en los efectos que permite, pero usualmente también es más lento de ejecutar</p><blockquote><strong style="color: rgb(64, 70, 84); background-color: rgb(243, 244, 246);">GeForce RTX</strong><span style="color: rgb(64, 70, 84); background-color: rgb(243, 244, 246);"> es una linea de tarjetas gráficas de alto rendimiento que utiliza ray tracing en tiempo real. También cada vez más incluye IA para ofrecer gráficos hiperrealistas, iluminación avanzada, y mantener el alto rendimiento en videojuegos.</span></blockquote> </div></div> </div> </div> </div> <div style=""><div class="text-container svelte-9rdfrf"><hr class="has-background-grey-light" style="height: 1px; margin: 60px 0px;"> <div class="overlay-text has-text-centered has-background-white  svelte-9rdfrf" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 0px 10px;"><div class="subtitle is-7 is-uppercase has-text-grey svelte-cbffuh" style="letter-spacing: 5px;; background-color: undefined">Basic Ray-Tracing Algorithm </div></div></div> <div class="title font-poppins m-3 left svelte-cbffuh" style="color: #000000;; background-color: undefined">Basic Ray Tracing </div><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/e3f4215c-68c5-413e-a478-6eac47279286.png"><img class="is-rounded  svelte-1truct9" src="sync_files/e3f4215c-68c5-413e-a478-6eac47279286.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/e3f4215c-68c5-413e-a478-6eac47279286.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><p>El <strong>ray tracer</strong> calcula el color de un pixel a la vez. La tarea básica del ray-tracer es<span style="background-color: rgb(235, 214, 255);"> encontrar que objetos son vistos en cada pixel.</span></p><p><strong>1. Generación de Rayos:</strong> calcula el origen y la dirección del <em>viewing ray</em> de cada pixel.</p><p><strong style="color: rgb(64, 70, 84);">2. </strong><strong style="color: rgb(46, 51, 61);">Intersección de Rayos</strong><span style="color: rgb(46, 51, 61);">:</span><span style="color: rgb(64, 70, 84);"> encuentra el objeto más cercano a la cámara que es intersectado por el rayo.</span></p><p><strong>3. Coloreado (Shading): </strong>calcula el color del pixel basado en los resultados de la intersección.</p> </div></div> </div> </div> </div> <div style=""><div class="text-container svelte-9rdfrf"><hr class="has-background-grey-light" style="height: 1px; margin: 60px 0px;"> <div class="overlay-text has-text-centered has-background-white  svelte-9rdfrf" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 0px 10px;"><div class="subtitle is-7 is-uppercase has-text-grey svelte-cbffuh" style="letter-spacing: 5px;; background-color: undefined">Generación de Rayos </div></div></div> <div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/f2f22b3c-852b-44ce-b155-fb96f85a8331.png"><img class="is-rounded  svelte-1truct9" src="sync_files/f2f22b3c-852b-44ce-b155-fb96f85a8331.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/f2f22b3c-852b-44ce-b155-fb96f85a8331.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h2><strong>Generación de Rayos</strong></h2><p>Podemos modelar matemáticamente un rayo cómo un <span style="background-color: rgb(235, 214, 255);">punto donde se origina y una dirección de propagación.</span></p><pre class="ql-syntax" spellcheck="false">p(t) = e + t(s - e)<br></pre><p><strong>e </strong>es el punto de origen, y <strong>s </strong>es un punto en el plano de la imagen (e.g., centro del pixel). <em>t</em> es un escalar que nos hace avanzar desde <strong>e</strong> a <strong>s, </strong>desde t=0 a t=1.</p><p><br></p><p><br></p> </div></div> </div> </div> </div> <div style=""><div class="title font-poppins is-4 m-3 center svelte-cbffuh" style="color: #000000;; background-color: undefined">Cómo encontramos el punto s? </div><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/9e80e5a3-1a29-47e7-9e4e-f2a0c39e190f.png"><img class="is-rounded  svelte-1truct9" src="sync_files/9e80e5a3-1a29-47e7-9e4e-f2a0c39e190f.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/9e80e5a3-1a29-47e7-9e4e-f2a0c39e190f.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><p>Para calcular los rayos necesitamos conocer el punto <strong>e</strong> (viewpoint) y <strong>s.</strong> Para encontrar <strong>s</strong> debemos mirar nuevamente al <span style="background-color: rgb(235, 214, 255);">sistema de coordenadas de la cámara.</span></p><ul><li><strong>e:</strong> punto donde está el origen del sistema de coordenadas de la cámara</li><li><strong>u: </strong>apunta hacia la derecha (desde el punto de vista de la cámara)</li><li><strong>v:</strong> apunta hacia arriba</li><li><strong>w:</strong> apunta en la dirección opuesta a la vista</li></ul> </div></div> </div> </div> </div> <div style=""><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/ddc4fd8b-c3e9-4f95-8b3d-b7c5abc6e500.png"><img class="is-rounded  svelte-1truct9" src="sync_files/ddc4fd8b-c3e9-4f95-8b3d-b7c5abc6e500.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/ddc4fd8b-c3e9-4f95-8b3d-b7c5abc6e500.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h2>Plano de la Imagen</h2><p>Vamos a definir el plano de la imagen usando las coordenadas de la cámara.</p><ul><li><strong><em>l</em></strong> y <strong><em>r</em></strong>, son las posiciones de los bordes izquierdo y derecho (left and right)</li><li><strong><em>b</em> </strong>y<strong> <em>t, </em></strong><em> </em>son las posiciones de los bordes superior e inferior (bottom and top)</li></ul><p>Si la imagen tiene W x H pixeles, los pixeles van a estar espaciados por una distancia de <span style="background-color: rgb(204, 224, 245);">(r - l) / W</span> horizontalmente y <span style="background-color: rgb(204, 224, 245);">(t - b) / H</span> verticalmente.</p><p>La grilla de pixeles tiene su propia numeración, de (0,0) a (W-1, H-1). Para un pixel <em>(i,j) </em>tiene posición <em>(u,v)</em> en el plano de la imagen dado por:</p><pre class="ql-syntax" spellcheck="false">u = l + (r - l) * (i + 0.5) / W<br>v = b + (t - b) * (j + 0.5) / H<br></pre> </div></div> </div> </div> </div> <div style=""><div class="content svelte-cbffuh" style="; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column mt-4  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/a18dec07-2f34-46d4-bc26-564b4f3889b2.png"><img class="is-rounded  svelte-1truct9" src="sync_files/a18dec07-2f34-46d4-bc26-564b4f3889b2.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/a18dec07-2f34-46d4-bc26-564b4f3889b2.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="markup-viewer svelte-wpayk8"><div class="milkdown"><div contenteditable="false" translate="no" class="ProseMirror virtual-cursor-enabled editor" role="textbox"><div contenteditable="false" class="prosemirror-virtual-cursor prosemirror-virtual-cursor-animation" style="height: 19.2667px; left: 12px; top: 5179.42px;"></div><h2 id="vista-ortográfica">Vista Ortográfica</h2><p>En una vista ortográfica, <strong>el rayo se origina en el plano de la imagen</strong> (centro del pixel) y <strong>apunta en la dirección de la vista de la camara</strong> (-w).</p><p>Para generar los rayos de cada pixel, simplemente calculamos la posición del rayo en image space <em>(u,v)</em> y usamos el sistema de coordenadas de la cámara para calcular las coordenadas en el mundo.</p><div class="milkdown-code-block" data-v-app="" contenteditable="false"><div class="tools"><button type="button" class="language-button" data-expanded="false">Python<div class="expand-icon"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+  </svg></span></div></button><div class="language-picker" style="left: 12px; top: 3021.93px;"></div><div class="tools-button-group"><button type="button" class="copy-button"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none">
+    <path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"></path>
+  </svg></span>Copy</button><!----></div></div><div class="codemirror-host"><div class="cm-editor ͼ1 ͼ3 ͼ4 ͼo"><div class="cm-announced" aria-live="polite"></div><div tabindex="-1" class="cm-scroller"><div class="cm-gutters cm-gutters-before" aria-hidden="true" style="min-height: 153.6px; position: sticky;"><div class="cm-gutter cm-lineNumbers"><div class="cm-gutterElement" style="height: 0px; visibility: hidden; pointer-events: none;">9</div><div class="cm-gutterElement cm-activeLineGutter" style="height: 18.2px; margin-top: 4px;">1</div><div class="cm-gutterElement" style="height: 18.2px;">2</div><div class="cm-gutterElement" style="height: 18.2px;">3</div><div class="cm-gutterElement" style="height: 18.2px;">4</div><div class="cm-gutterElement" style="height: 18.2px;">5</div><div class="cm-gutterElement" style="height: 18.2px;">6</div><div class="cm-gutterElement" style="height: 18.2px;">7</div><div class="cm-gutterElement" style="height: 18.2px;">8</div></div><div class="cm-gutter cm-foldGutter"><div class="cm-gutterElement" style="height: 0px; visibility: hidden; pointer-events: none;"><span title="Unfold line">›</span></div><div class="cm-gutterElement cm-activeLineGutter" style="height: 18.2px; margin-top: 4px;"><span title="Fold line">⌄</span></div><div class="cm-gutterElement" style="height: 18.2px;"><span title="Fold line">⌄</span></div></div></div><div style="tab-size: 4;" spellcheck="false" autocorrect="off" autocapitalize="none" writingsuggestions="false" translate="no" contenteditable="true" class="cm-content" role="textbox" aria-multiline="true" aria-readonly="true" aria-autocomplete="list" data-language="python"><div class="cm-line cm-activeLine"><span class="ͼp">for</span> <span class="ͼq">i</span> <span class="ͼv">in</span> <span class="ͼr">range</span>(<span class="ͼu">0</span><span class="ͼt">,</span> <span class="ͼq">W</span>):</div><div class="cm-line">  <span class="ͼp">for</span> <span class="ͼq">j</span> <span class="ͼv">in</span> <span class="ͼr">range</span>(<span class="ͼu">0</span><span class="ͼt">,</span> <span class="ͼq">H</span>):</div><div class="cm-line">    <span class="ͼq">u</span> <span class="ͼv">=</span> <span class="ͼq">l</span> <span class="ͼv">+</span> (<span class="ͼq">r</span> <span class="ͼv">-</span> <span class="ͼq">l</span>) <span class="ͼv">*</span> (<span class="ͼq">i</span> <span class="ͼv">+</span> <span class="ͼu">0.5</span>) <span class="ͼv">/</span> <span class="ͼq">W</span></div><div class="cm-line">    <span class="ͼq">v</span> <span class="ͼv">=</span> <span class="ͼq">b</span> <span class="ͼv">+</span> (<span class="ͼq">t</span> <span class="ͼv">-</span> <span class="ͼq">b</span>) <span class="ͼv">*</span> (<span class="ͼq">j</span> <span class="ͼv">+</span> <span class="ͼu">0.5</span>) <span class="ͼv">/</span> <span class="ͼq">H</span></div><div class="cm-line"><br></div><div class="cm-line">    <span class="ͼw"># origen y direción expresadas en world coordinates</span></div><div class="cm-line">    <span class="ͼq">ray</span><span class="ͼv">.</span><span class="ͼq">origin</span> <span class="ͼv">=</span> <span class="ͼq">cam</span><span class="ͼv">.</span><span class="ͼq">e</span> <span class="ͼv">+</span> <span class="ͼq">u</span> <span class="ͼv">*</span> <span class="ͼq">cam</span><span class="ͼv">.</span><span class="ͼq">u</span> <span class="ͼv">+</span> <span class="ͼq">v</span> <span class="ͼv">*</span> <span class="ͼq">cam</span><span class="ͼv">.</span><span class="ͼq">v</span> </div><div class="cm-line">    <span class="ͼq">ray</span><span class="ͼv">.</span><span class="ͼq">dir</span> <span class="ͼv">=</span> <span class="ͼv">-</span> <span class="ͼq">cam</span><span class="ͼv">.</span><span class="ͼq">w</span></div></div><div class="cm-layer cm-layer-above cm-cursorLayer" aria-hidden="true" style="z-index: 150; animation-duration: 1200ms;"><div class="cm-cursor cm-cursor-primary" style="left: 36.8833px; top: 5.45001px; height: 15.3px;"></div></div><div class="cm-layer cm-selectionLayer" aria-hidden="true" style="z-index: -2;"></div></div></div></div><!----></div><p><br class="ProseMirror-trailingBreak"></p></div><div style="position: fixed; pointer-events: none; display: none; top: 0px; left: 0px;" class="crepe-drop-cursor milkdown-drop-indicator"></div><div class="milkdown-link-preview" data-v-app="" data-show="false"><div class="link-preview"><span class="milkdown-icon button link-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none">
+    <path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"></path>
+  </svg></span><a href="" target="_blank" class="link-display"></a><span class="milkdown-icon button link-edit-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_1013_1585)">
+      <path d="M14.06 9.02L14.98 9.94L5.92 19H5V18.08L14.06 9.02ZM17.66 3C17.41 3 17.15 3.1 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C18.17 3.09 17.92 3 17.66 3ZM14.06 6.19L3 17.25V21H6.75L17.81 9.94L14.06 6.19Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_1013_1585">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span class="milkdown-icon button link-remove-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M7.30775 20.4997C6.81058 20.4997 6.385 20.3227 6.031 19.9687C5.677 19.6147 5.5 19.1892 5.5 18.692V5.99973H5.25C5.0375 5.99973 4.85942 5.92782 4.71575 5.78398C4.57192 5.64015 4.5 5.46198 4.5 5.24948C4.5 5.03682 4.57192 4.85873 4.71575 4.71523C4.85942 4.57157 5.0375 4.49973 5.25 4.49973H9C9 4.2549 9.08625 4.04624 9.25875 3.87374C9.43108 3.7014 9.63967 3.61523 9.8845 3.61523H14.1155C14.3603 3.61523 14.5689 3.7014 14.7413 3.87374C14.9138 4.04624 15 4.2549 15 4.49973H18.75C18.9625 4.49973 19.1406 4.57165 19.2843 4.71548C19.4281 4.85932 19.5 5.03748 19.5 5.24998C19.5 5.46265 19.4281 5.64073 19.2843 5.78423C19.1406 5.9279 18.9625 5.99973 18.75 5.99973H18.5V18.692C18.5 19.1892 18.323 19.6147 17.969 19.9687C17.615 20.3227 17.1894 20.4997 16.6923 20.4997H7.30775ZM17 5.99973H7V18.692C7 18.7818 7.02883 18.8556 7.0865 18.9132C7.14417 18.9709 7.21792 18.9997 7.30775 18.9997H16.6923C16.7821 18.9997 16.8558 18.9709 16.9135 18.9132C16.9712 18.8556 17 18.7818 17 18.692V5.99973ZM10.1543 16.9997C10.3668 16.9997 10.5448 16.9279 10.6885 16.7842C10.832 16.6404 10.9037 16.4622 10.9037 16.2497V8.74973C10.9037 8.53723 10.8318 8.35907 10.688 8.21523C10.5443 8.07157 10.3662 7.99973 10.1535 7.99973C9.941 7.99973 9.76292 8.07157 9.61925 8.21523C9.47575 8.35907 9.404 8.53723 9.404 8.74973V16.2497C9.404 16.4622 9.47583 16.6404 9.6195 16.7842C9.76333 16.9279 9.94158 16.9997 10.1543 16.9997ZM13.8465 16.9997C14.059 16.9997 14.2371 16.9279 14.3807 16.7842C14.5243 16.6404 14.596 16.4622 14.596 16.2497V8.74973C14.596 8.53723 14.5242 8.35907 14.3805 8.21523C14.2367 8.07157 14.0584 7.99973 13.8458 7.99973C13.6333 7.99973 13.4552 8.07157 13.3115 8.21523C13.168 8.35907 13.0962 8.53723 13.0962 8.74973V16.2497C13.0962 16.4622 13.1682 16.6404 13.312 16.7842C13.4557 16.9279 13.6338 16.9997 13.8465 16.9997Z"></path>
+  </svg></span></div></div><div class="milkdown-link-edit" data-v-app="" data-show="false"><div class="link-edit"><input class="input-area" placeholder="Paste link..."><!----></div></div><div class="milkdown-toolbar" data-v-app="" data-show="false"><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M8.85758 18.625C8.4358 18.625 8.07715 18.4772 7.78163 18.1817C7.48613 17.8862 7.33838 17.5275 7.33838 17.1058V6.8942C7.33838 6.47242 7.48613 6.11377 7.78163 5.81825C8.07715 5.52275 8.4358 5.375 8.85758 5.375H12.1999C13.2191 5.375 14.1406 5.69231 14.9643 6.32693C15.788 6.96154 16.1999 7.81603 16.1999 8.89038C16.1999 9.63779 16.0194 10.2471 15.6585 10.7183C15.2976 11.1894 14.9088 11.5314 14.4922 11.7442C15.005 11.9211 15.4947 12.2708 15.9614 12.7933C16.428 13.3157 16.6614 14.0192 16.6614 14.9038C16.6614 16.182 16.1902 17.1217 15.2479 17.723C14.3056 18.3243 13.3563 18.625 12.3999 18.625H8.85758ZM9.4883 16.6327H12.3191C13.1063 16.6327 13.6627 16.4141 13.9884 15.9769C14.314 15.5397 14.4768 15.1205 14.4768 14.7192C14.4768 14.3179 14.314 13.8987 13.9884 13.4615C13.6627 13.0243 13.0909 12.8057 12.273 12.8057H9.4883V16.6327ZM9.4883 10.875H12.0826C12.6903 10.875 13.172 10.7013 13.5278 10.3539C13.8836 10.0064 14.0615 9.59037 14.0615 9.10575C14.0615 8.59035 13.8733 8.16918 13.497 7.84225C13.1207 7.51533 12.6595 7.35188 12.1133 7.35188H9.4883V10.875Z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M6.29811 18.625C6.04505 18.625 5.83115 18.5375 5.65641 18.3626C5.48166 18.1877 5.39429 17.9736 5.39429 17.7203C5.39429 17.467 5.48166 17.2532 5.65641 17.0788C5.83115 16.9045 6.04505 16.8173 6.29811 16.8173H9.21159L12.452 7.18265H9.53851C9.28545 7.18265 9.07155 7.0952 8.89681 6.9203C8.72206 6.7454 8.63469 6.5313 8.63469 6.278C8.63469 6.02472 8.72206 5.81089 8.89681 5.63652C9.07155 5.46217 9.28545 5.375 9.53851 5.375H16.8847C17.1377 5.375 17.3516 5.46245 17.5264 5.63735C17.7011 5.81225 17.7885 6.02634 17.7885 6.27962C17.7885 6.53293 17.7011 6.74676 17.5264 6.92113C17.3516 7.09548 17.1377 7.18265 16.8847 7.18265H14.2789L11.0385 16.8173H13.6443C13.8973 16.8173 14.1112 16.9048 14.286 17.0797C14.4607 17.2546 14.5481 17.4687 14.5481 17.722C14.5481 17.9752 14.4607 18.1891 14.286 18.3634C14.1112 18.5378 13.8973 18.625 13.6443 18.625H6.29811Z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M3.25 13.7404C3.0375 13.7404 2.85938 13.6684 2.71563 13.5246C2.57188 13.3808 2.5 13.2026 2.5 12.99C2.5 12.7774 2.57188 12.5993 2.71563 12.4558C2.85938 12.3122 3.0375 12.2404 3.25 12.2404H20.75C20.9625 12.2404 21.1406 12.3123 21.2843 12.4561C21.4281 12.5999 21.5 12.7781 21.5 12.9907C21.5 13.2033 21.4281 13.3814 21.2843 13.525C21.1406 13.6686 20.9625 13.7404 20.75 13.7404H3.25ZM10.9423 10.2596V6.62495H6.5673C6.2735 6.62495 6.02377 6.52201 5.8181 6.31613C5.61245 6.11026 5.50963 5.86027 5.50963 5.56615C5.50963 5.27205 5.61245 5.02083 5.8181 4.8125C6.02377 4.60417 6.2735 4.5 6.5673 4.5H17.4423C17.7361 4.5 17.9858 4.60294 18.1915 4.80883C18.3971 5.01471 18.5 5.2647 18.5 5.5588C18.5 5.85292 18.3971 6.10413 18.1915 6.31245C17.9858 6.52078 17.7361 6.62495 17.4423 6.62495H13.0673V10.2596H10.9423ZM10.9423 15.7211H13.0673V18.4423C13.0673 18.7361 12.9643 18.9858 12.7584 19.1915C12.5526 19.3971 12.3026 19.5 12.0085 19.5C11.7144 19.5 11.4631 19.3962 11.2548 19.1887C11.0465 18.9811 10.9423 18.7291 10.9423 18.4327V15.7211Z"></path>
+  </svg></span></button><div class="divider"></div><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8081)">
+      <path d="M9.4 16.6L4.8 12L9.4 7.4L8 6L2 12L8 18L9.4 16.6ZM14.6 16.6L19.2 12L14.6 7.4L16 6L22 12L16 18L14.6 16.6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8081">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M7 19v-.808L13.096 12L7 5.808V5h10v1.25H9.102L14.727 12l-5.625 5.77H17V19z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M17.0385 19.5003V16.5388H14.0769V15.0388H17.0385V12.0773H18.5384V15.0388H21.5V16.5388H18.5384V19.5003H17.0385ZM10.8077 16.5388H7.03845C5.78282 16.5388 4.7125 16.0963 3.8275 15.2114C2.9425 14.3266 2.5 13.2564 2.5 12.0009C2.5 10.7454 2.9425 9.67504 3.8275 8.78979C4.7125 7.90454 5.78282 7.46191 7.03845 7.46191H10.8077V8.96186H7.03845C6.1987 8.96186 5.48235 9.25834 4.8894 9.85129C4.29645 10.4442 3.99998 11.1606 3.99998 12.0003C3.99998 12.8401 4.29645 13.5564 4.8894 14.1494C5.48235 14.7423 6.1987 15.0388 7.03845 15.0388H10.8077V16.5388ZM8.25 12.7503V11.2504H15.75V12.7503H8.25ZM21.5 12.0003H20C20 11.1606 19.7035 10.4442 19.1106 9.85129C18.5176 9.25834 17.8013 8.96186 16.9615 8.96186H13.1923V7.46191H16.9615C18.2171 7.46191 19.2875 7.90441 20.1725 8.78939C21.0575 9.67439 21.5 10.7447 21.5 12.0003Z"></path>
+  </svg></span></button></div><div class="milkdown-latex-inline-edit" data-v-app="" data-show="false"><div class="container"><div></div><button type="button"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <g clip-path="url(#clip0_1013_1606)">
+      <path d="M9.00012 16.1998L5.50012 12.6998C5.11012 12.3098 4.49012 12.3098 4.10012 12.6998C3.71012 13.0898 3.71012 13.7098 4.10012 14.0998L8.29012 18.2898C8.68012 18.6798 9.31012 18.6798 9.70012 18.2898L20.3001 7.69982C20.6901 7.30982 20.6901 6.68982 20.3001 6.29982C19.9101 5.90982 19.2901 5.90982 18.9001 6.29982L9.00012 16.1998Z" fill="#817567"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_1013_1606">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></button></div></div><div class="milkdown-block-handle" data-v-app="" data-show="false" draggable="true"><div class="operation-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_971_7676)">
+      <path d="M18 13H13V18C13 18.55 12.55 19 12 19C11.45 19 11 18.55 11 18V13H6C5.45 13 5 12.55 5 12C5 11.45 5.45 11 6 11H11V6C11 5.45 11.45 5 12 5C12.55 5 13 5.45 13 6V11H18C18.55 11 19 11.45 19 12C19 12.55 18.55 13 18 13Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_971_7676">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></div><div class="operation-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_971_7680)">
+      <path d="M11 18C11 19.1 10.1 20 9 20C7.9 20 7 19.1 7 18C7 16.9 7.9 16 9 16C10.1 16 11 16.9 11 18ZM9 10C7.9 10 7 10.9 7 12C7 13.1 7.9 14 9 14C10.1 14 11 13.1 11 12C11 10.9 10.1 10 9 10ZM9 4C7.9 4 7 4.9 7 6C7 7.1 7.9 8 9 8C10.1 8 11 7.1 11 6C11 4.9 10.1 4 9 4ZM15 8C16.1 8 17 7.1 17 6C17 4.9 16.1 4 15 4C13.9 4 13 4.9 13 6C13 7.1 13.9 8 15 8ZM15 10C13.9 10 13 10.9 13 12C13 13.1 13.9 14 15 14C16.1 14 17 13.1 17 12C17 10.9 16.1 10 15 10ZM15 16C13.9 16 13 16.9 13 18C13 19.1 13.9 20 15 20C16.1 20 17 19.1 17 18C17 16.9 16.1 16 15 16Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_971_7680">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></div></div><div class="milkdown-slash-menu" data-v-app="" data-show="false"><div><nav class="tab-group"><ul><li class="selected">Text</li><li class="">List</li><li class="">Advanced</li></ul></nav><div class="menu-groups"><div class="menu-group"><h6>Text</h6><ul><li data-index="0" class="hover"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5547)">
+      <path d="M5 5.5C5 6.33 5.67 7 6.5 7H10.5V17.5C10.5 18.33 11.17 19 12 19C12.83 19 13.5 18.33 13.5 17.5V7H17.5C18.33 7 19 6.33 19 5.5C19 4.67 18.33 4 17.5 4H6.5C5.67 4 5 4.67 5 5.5Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5547">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Text</span></li><li data-index="1" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5553)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM12 17H14V7H10V9H12V17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5553">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 1</span></li><li data-index="2" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5559)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15H11V13H13C14.1 13 15 12.11 15 11V9C15 7.89 14.1 7 13 7H9V9H13V11H11C9.9 11 9 11.89 9 13V17H15V15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5559">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 2</span></li><li data-index="3" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5565)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13.5C15 12.67 14.33 12 13.5 12C14.33 12 15 11.33 15 10.5V9C15 7.89 14.1 7 13 7H9V9H13V11H11V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5565">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 3</span></li><li data-index="4" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7757)">
+      <path d="M19.04 3H5.04004C3.94004 3 3.04004 3.9 3.04004 5V19C3.04004 20.1 3.94004 21 5.04004 21H19.04C20.14 21 21.04 20.1 21.04 19V5C21.04 3.9 20.14 3 19.04 3ZM19.04 19H5.04004V5H19.04V19ZM13.04 17H15.04V7H13.04V11H11.04V7H9.04004V13H13.04V17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7757">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 4</span></li><li data-index="5" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7760)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13C15 11.89 14.1 11 13 11H11V9H15V7H9V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7760">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 5</span></li><li data-index="6" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7763)">
+      <path d="M11 17H13C14.1 17 15 16.11 15 15V13C15 11.89 14.1 11 13 11H11V9H15V7H11C9.9 7 9 7.89 9 9V15C9 16.11 9.9 17 11 17ZM11 13H13V15H11V13ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7763">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 6</span></li><li data-index="7" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7897)">
+      <path d="M7.17 17C7.68 17 8.15 16.71 8.37 16.26L9.79 13.42C9.93 13.14 10 12.84 10 12.53V8C10 7.45 9.55 7 9 7H5C4.45 7 4 7.45 4 8V12C4 12.55 4.45 13 5 13H7L5.97 15.06C5.52 15.95 6.17 17 7.17 17ZM17.17 17C17.68 17 18.15 16.71 18.37 16.26L19.79 13.42C19.93 13.14 20 12.84 20 12.53V8C20 7.45 19.55 7 19 7H15C14.45 7 14 7.45 14 8V12C14 12.55 14.45 13 15 13H17L15.97 15.06C15.52 15.95 16.17 17 17.17 17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7897">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Quote</span></li><li data-index="8" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7900)">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M19 13H5C4.45 13 4 12.55 4 12C4 11.45 4.45 11 5 11H19C19.55 11 20 11.45 20 12C20 12.55 19.55 13 19 13Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7900">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Divider</span></li></ul></div><div class="menu-group"><h6>List</h6><ul><li data-index="9" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8070)">
+      <path d="M4 10.5C3.17 10.5 2.5 11.17 2.5 12C2.5 12.83 3.17 13.5 4 13.5C4.83 13.5 5.5 12.83 5.5 12C5.5 11.17 4.83 10.5 4 10.5ZM4 4.5C3.17 4.5 2.5 5.17 2.5 6C2.5 6.83 3.17 7.5 4 7.5C4.83 7.5 5.5 6.83 5.5 6C5.5 5.17 4.83 4.5 4 4.5ZM4 16.5C3.17 16.5 2.5 17.18 2.5 18C2.5 18.82 3.18 19.5 4 19.5C4.82 19.5 5.5 18.82 5.5 18C5.5 17.18 4.83 16.5 4 16.5ZM8 19H20C20.55 19 21 18.55 21 18C21 17.45 20.55 17 20 17H8C7.45 17 7 17.45 7 18C7 18.55 7.45 19 8 19ZM8 13H20C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11H8C7.45 11 7 11.45 7 12C7 12.55 7.45 13 8 13ZM7 6C7 6.55 7.45 7 8 7H20C20.55 7 21 6.55 21 6C21 5.45 20.55 5 20 5H8C7.45 5 7 5.45 7 6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8070">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Bullet List</span></li><li data-index="10" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8067)">
+      <path d="M8 7H20C20.55 7 21 6.55 21 6C21 5.45 20.55 5 20 5H8C7.45 5 7 5.45 7 6C7 6.55 7.45 7 8 7ZM20 17H8C7.45 17 7 17.45 7 18C7 18.55 7.45 19 8 19H20C20.55 19 21 18.55 21 18C21 17.45 20.55 17 20 17ZM20 11H8C7.45 11 7 11.45 7 12C7 12.55 7.45 13 8 13H20C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11ZM4.5 16H2.5C2.22 16 2 16.22 2 16.5C2 16.78 2.22 17 2.5 17H4V17.5H3.5C3.22 17.5 3 17.72 3 18C3 18.28 3.22 18.5 3.5 18.5H4V19H2.5C2.22 19 2 19.22 2 19.5C2 19.78 2.22 20 2.5 20H4.5C4.78 20 5 19.78 5 19.5V16.5C5 16.22 4.78 16 4.5 16ZM2.5 5H3V7.5C3 7.78 3.22 8 3.5 8C3.78 8 4 7.78 4 7.5V4.5C4 4.22 3.78 4 3.5 4H2.5C2.22 4 2 4.22 2 4.5C2 4.78 2.22 5 2.5 5ZM4.5 10H2.5C2.22 10 2 10.22 2 10.5C2 10.78 2.22 11 2.5 11H3.8L2.12 12.96C2.04 13.05 2 13.17 2 13.28V13.5C2 13.78 2.22 14 2.5 14H4.5C4.78 14 5 13.78 5 13.5C5 13.22 4.78 13 4.5 13H3.2L4.88 11.04C4.96 10.95 5 10.83 5 10.72V10.5C5 10.22 4.78 10 4.5 10Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8067">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Ordered List</span></li><li data-index="11" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M5.66936 16.3389L9.39244 12.6158C9.54115 12.4671 9.71679 12.3937 9.91936 12.3957C10.1219 12.3976 10.2975 12.4761 10.4463 12.6312C10.5847 12.7823 10.654 12.9585 10.654 13.1599C10.654 13.3613 10.5847 13.5363 10.4463 13.6851L6.32704 17.8197C6.14627 18.0004 5.93538 18.0908 5.69436 18.0908C5.45333 18.0908 5.24243 18.0004 5.06166 17.8197L3.01744 15.7754C2.87899 15.637 2.81136 15.4629 2.81456 15.2533C2.81776 15.0437 2.88859 14.8697 3.02706 14.7312C3.16551 14.5928 3.34008 14.5235 3.55076 14.5235C3.76144 14.5235 3.93494 14.5928 4.07126 14.7312L5.66936 16.3389ZM5.66936 8.72359L9.39244 5.00049C9.54115 4.85177 9.71679 4.77838 9.91936 4.78031C10.1219 4.78223 10.2975 4.86075 10.4463 5.01586C10.5847 5.16691 10.654 5.34314 10.654 5.54454C10.654 5.74592 10.5847 5.92097 10.4463 6.06969L6.32704 10.2043C6.14627 10.3851 5.93538 10.4755 5.69436 10.4755C5.45333 10.4755 5.24243 10.3851 5.06166 10.2043L3.01744 8.16009C2.87899 8.02162 2.81136 7.84759 2.81456 7.63799C2.81776 7.42837 2.88859 7.25433 3.02706 7.11586C3.16551 6.97741 3.34008 6.90819 3.55076 6.90819C3.76144 6.90819 3.93494 6.97741 4.07126 7.11586L5.66936 8.72359ZM13.7597 16.5581C13.5472 16.5581 13.3691 16.4862 13.2253 16.3424C13.0816 16.1986 13.0097 16.0204 13.0097 15.8078C13.0097 15.5952 13.0816 15.4171 13.2253 15.2735C13.3691 15.13 13.5472 15.0582 13.7597 15.0582H20.7597C20.9722 15.0582 21.1503 15.1301 21.2941 15.2739C21.4378 15.4177 21.5097 15.5959 21.5097 15.8085C21.5097 16.0211 21.4378 16.1992 21.2941 16.3427C21.1503 16.4863 20.9722 16.5581 20.7597 16.5581H13.7597ZM13.7597 8.94276C13.5472 8.94276 13.3691 8.87085 13.2253 8.72704C13.0816 8.58324 13.0097 8.40504 13.0097 8.19244C13.0097 7.97985 13.0816 7.80177 13.2253 7.65819C13.3691 7.5146 13.5472 7.44281 13.7597 7.44281H20.7597C20.9722 7.44281 21.1503 7.51471 21.2941 7.65851C21.4378 7.80233 21.5097 7.98053 21.5097 8.19311C21.5097 8.40571 21.4378 8.5838 21.2941 8.72739C21.1503 8.87097 20.9722 8.94276 20.7597 8.94276H13.7597Z"></path>
+  </svg></span><span>Task List</span></li></ul></div><div class="menu-group"><h6>Advanced</h6><ul><li data-index="12" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8075)">
+      <path d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM14.14 11.86L11.14 15.73L9 13.14L6 17H18L14.14 11.86Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8075">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Image</span></li><li data-index="13" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8081)">
+      <path d="M9.4 16.6L4.8 12L9.4 7.4L8 6L2 12L8 18L9.4 16.6ZM14.6 16.6L19.2 12L14.6 7.4L16 6L22 12L16 18L14.6 16.6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8081">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Code</span></li><li data-index="14" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8078)">
+      <path d="M20 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3ZM20 5V8H5V5H20ZM15 19H10V10H15V19ZM5 10H8V19H5V10ZM17 19V10H20V19H17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8078">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Table</span></li><li data-index="15" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M7 19v-.808L13.096 12L7 5.808V5h10v1.25H9.102L14.727 12l-5.625 5.77H17V19z"></path>
+  </svg></span><span>Math</span></li></ul></div></div></div></div></div></div> </div> </div> </div> </div> <div style=""><div class="content svelte-cbffuh" style="; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column mt-4  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/dea1bd03-c0a3-4f33-a36a-974858c4e6ee.png"><img class="is-rounded  svelte-1truct9" src="sync_files/dea1bd03-c0a3-4f33-a36a-974858c4e6ee.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/dea1bd03-c0a3-4f33-a36a-974858c4e6ee.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="markup-viewer svelte-wpayk8"><div class="milkdown"><div contenteditable="false" translate="no" class="ProseMirror virtual-cursor-enabled editor" role="textbox"><div contenteditable="false" class="prosemirror-virtual-cursor prosemirror-virtual-cursor-animation" style="height: 19.2667px; left: 12px; top: 4533.82px;"></div><h2 id="vista-perspectiva">Vista Perspectiva</h2><p>En una vista perspectiva, <strong>todos los rayos tienen el mismo origen, el viewpoint e;</strong> pero la dirección es distinta para cada pixel.</p><p>El plano de la imagen ya no se ubica en <strong>e</strong>, sino a una distancia <strong>d</strong> en la dirección de la vista. A esa distancia a veces se le dice <em>focal length,</em> aun que no son exactamente lo mismo, pero cumple un rol similar.</p><div class="milkdown-code-block" data-v-app="" contenteditable="false"><div class="tools"><button type="button" class="language-button" data-expanded="false">Python<div class="expand-icon"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+  </svg></span></div></button><div class="language-picker" style="left: 12px; top: 771.4px;"></div><div class="tools-button-group"><button type="button" class="copy-button"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none">
+    <path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"></path>
+  </svg></span>Copy</button><!----></div></div><div class="codemirror-host"><div class="cm-editor ͼ1 ͼ3 ͼ4 ͼo"><div class="cm-announced" aria-live="polite"></div><div tabindex="-1" class="cm-scroller"><div class="cm-gutters cm-gutters-before" aria-hidden="true" style="min-height: 153.6px; position: sticky;"><div class="cm-gutter cm-lineNumbers"><div class="cm-gutterElement" style="height: 0px; visibility: hidden; pointer-events: none;">9</div><div class="cm-gutterElement cm-activeLineGutter" style="height: 18.2px; margin-top: 4px;">1</div><div class="cm-gutterElement" style="height: 18.2px;">2</div><div class="cm-gutterElement" style="height: 18.2px;">3</div><div class="cm-gutterElement" style="height: 18.2px;">4</div><div class="cm-gutterElement" style="height: 18.2px;">5</div><div class="cm-gutterElement" style="height: 18.2px;">6</div><div class="cm-gutterElement" style="height: 18.2px;">7</div><div class="cm-gutterElement" style="height: 18.2px;">8</div></div><div class="cm-gutter cm-foldGutter"><div class="cm-gutterElement" style="height: 0px; visibility: hidden; pointer-events: none;"><span title="Unfold line">›</span></div><div class="cm-gutterElement cm-activeLineGutter" style="height: 18.2px; margin-top: 4px;"><span title="Fold line">⌄</span></div><div class="cm-gutterElement" style="height: 18.2px;"><span title="Fold line">⌄</span></div></div></div><div style="tab-size: 4;" spellcheck="false" autocorrect="off" autocapitalize="none" writingsuggestions="false" translate="no" contenteditable="true" class="cm-content" role="textbox" aria-multiline="true" aria-readonly="true" aria-autocomplete="list" data-language="python"><div class="cm-line cm-activeLine"><span class="ͼp">for</span> <span class="ͼq">i</span> <span class="ͼv">in</span> <span class="ͼr">range</span>(<span class="ͼu">0</span><span class="ͼt">,</span> <span class="ͼq">W</span>):</div><div class="cm-line"><span class="ͼq">r</span> <span class="ͼv">-</span> <span class="ͼq">l</span>) <span class="ͼv">*</span> (<span class="ͼq">i</span> <span class="ͼv">+</span> <span class="ͼu">0.5</span>) <span class="ͼv">/</span> <span class="ͼq">W</span></div><div class="cm-line">    <span class="ͼq">v</span> <span class="ͼv">=</span> <span class="ͼq">b</span> <span class="ͼv">+</span> (<span class="ͼq">t</span> <div class="cm-line">  <span class="ͼp">for</span> <span class="ͼq">j</span> <span class="ͼv">in</span> <span class="ͼr">range</span>(<span class="ͼu">0</span><span class="ͼt">,</span> <span class="ͼq">H</span>):</div>    <span class="ͼq">u</span> <span class="ͼv">=</span> <span class="ͼq">l</span> <span class="ͼv">+</span> (<span class="ͼq"></span><span class="ͼv">-</span> <span class="ͼq">b</span>) <span class="ͼv">*</span> (<span class="ͼq">j</span> <span class="ͼv">+</span> <span class="ͼu">0.5</span>) <span class="ͼv">/</span> <span class="ͼq">H</span></div><div class="cm-line"><br></div><div class="cm-line">    <span class="ͼw"># origen y direción expresadas en world coordinates</span></div><div class="cm-line">    <span class="ͼq">ray</span><span class="ͼv">.</span><span class="ͼq">origin</span> <span class="ͼv">=</span> <span class="ͼq">cam</span><span class="ͼv">.</span><span class="ͼq">e</span></div><div class="cm-line">    <span class="ͼq">ray</span><span class="ͼv">.</span><span class="ͼq">dir</span> <span class="ͼv">=</span> <span class="ͼv">-</span> <span class="ͼq">d</span> <span class="ͼv">*</span> <span class="ͼq">cam</span><span class="ͼv">.</span><span class="ͼq">w</span>  <span class="ͼv">+</span> <span class="ͼq">u</span> <span class="ͼv">*</span> <span class="ͼq">cam</span><span class="ͼv">.</span><span class="ͼq">u</span> <span class="ͼv">+</span> <span class="ͼq">v</span> <span class="ͼv">*</span> <span class="ͼq">cam</span><span class="ͼv">.</span><span class="ͼq">v</span> </div></div><div class="cm-layer cm-layer-above cm-cursorLayer" aria-hidden="true" style="z-index: 150; animation-duration: 1200ms;"><div class="cm-cursor cm-cursor-primary" style="left: 36.8833px; top: 5.44995px; height: 15.3px;"></div></div><div class="cm-layer cm-selectionLayer" aria-hidden="true" style="z-index: -2;"></div></div></div></div><!----></div><p><br class="ProseMirror-trailingBreak"></p></div><div style="position: fixed; pointer-events: none; display: none; top: 0px; left: 0px;" class="crepe-drop-cursor milkdown-drop-indicator"></div><div class="milkdown-link-preview" data-v-app="" data-show="false"><div class="link-preview"><span class="milkdown-icon button link-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none">
+    <path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"></path>
+  </svg></span><a href="" target="_blank" class="link-display"></a><span class="milkdown-icon button link-edit-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_1013_1585)">
+      <path d="M14.06 9.02L14.98 9.94L5.92 19H5V18.08L14.06 9.02ZM17.66 3C17.41 3 17.15 3.1 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C18.17 3.09 17.92 3 17.66 3ZM14.06 6.19L3 17.25V21H6.75L17.81 9.94L14.06 6.19Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_1013_1585">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span class="milkdown-icon button link-remove-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M7.30775 20.4997C6.81058 20.4997 6.385 20.3227 6.031 19.9687C5.677 19.6147 5.5 19.1892 5.5 18.692V5.99973H5.25C5.0375 5.99973 4.85942 5.92782 4.71575 5.78398C4.57192 5.64015 4.5 5.46198 4.5 5.24948C4.5 5.03682 4.57192 4.85873 4.71575 4.71523C4.85942 4.57157 5.0375 4.49973 5.25 4.49973H9C9 4.2549 9.08625 4.04624 9.25875 3.87374C9.43108 3.7014 9.63967 3.61523 9.8845 3.61523H14.1155C14.3603 3.61523 14.5689 3.7014 14.7413 3.87374C14.9138 4.04624 15 4.2549 15 4.49973H18.75C18.9625 4.49973 19.1406 4.57165 19.2843 4.71548C19.4281 4.85932 19.5 5.03748 19.5 5.24998C19.5 5.46265 19.4281 5.64073 19.2843 5.78423C19.1406 5.9279 18.9625 5.99973 18.75 5.99973H18.5V18.692C18.5 19.1892 18.323 19.6147 17.969 19.9687C17.615 20.3227 17.1894 20.4997 16.6923 20.4997H7.30775ZM17 5.99973H7V18.692C7 18.7818 7.02883 18.8556 7.0865 18.9132C7.14417 18.9709 7.21792 18.9997 7.30775 18.9997H16.6923C16.7821 18.9997 16.8558 18.9709 16.9135 18.9132C16.9712 18.8556 17 18.7818 17 18.692V5.99973ZM10.1543 16.9997C10.3668 16.9997 10.5448 16.9279 10.6885 16.7842C10.832 16.6404 10.9037 16.4622 10.9037 16.2497V8.74973C10.9037 8.53723 10.8318 8.35907 10.688 8.21523C10.5443 8.07157 10.3662 7.99973 10.1535 7.99973C9.941 7.99973 9.76292 8.07157 9.61925 8.21523C9.47575 8.35907 9.404 8.53723 9.404 8.74973V16.2497C9.404 16.4622 9.47583 16.6404 9.6195 16.7842C9.76333 16.9279 9.94158 16.9997 10.1543 16.9997ZM13.8465 16.9997C14.059 16.9997 14.2371 16.9279 14.3807 16.7842C14.5243 16.6404 14.596 16.4622 14.596 16.2497V8.74973C14.596 8.53723 14.5242 8.35907 14.3805 8.21523C14.2367 8.07157 14.0584 7.99973 13.8458 7.99973C13.6333 7.99973 13.4552 8.07157 13.3115 8.21523C13.168 8.35907 13.0962 8.53723 13.0962 8.74973V16.2497C13.0962 16.4622 13.1682 16.6404 13.312 16.7842C13.4557 16.9279 13.6338 16.9997 13.8465 16.9997Z"></path>
+  </svg></span></div></div><div class="milkdown-link-edit" data-v-app="" data-show="false"><div class="link-edit"><input class="input-area" placeholder="Paste link..."><!----></div></div><div class="milkdown-toolbar" data-v-app="" data-show="false"><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M8.85758 18.625C8.4358 18.625 8.07715 18.4772 7.78163 18.1817C7.48613 17.8862 7.33838 17.5275 7.33838 17.1058V6.8942C7.33838 6.47242 7.48613 6.11377 7.78163 5.81825C8.07715 5.52275 8.4358 5.375 8.85758 5.375H12.1999C13.2191 5.375 14.1406 5.69231 14.9643 6.32693C15.788 6.96154 16.1999 7.81603 16.1999 8.89038C16.1999 9.63779 16.0194 10.2471 15.6585 10.7183C15.2976 11.1894 14.9088 11.5314 14.4922 11.7442C15.005 11.9211 15.4947 12.2708 15.9614 12.7933C16.428 13.3157 16.6614 14.0192 16.6614 14.9038C16.6614 16.182 16.1902 17.1217 15.2479 17.723C14.3056 18.3243 13.3563 18.625 12.3999 18.625H8.85758ZM9.4883 16.6327H12.3191C13.1063 16.6327 13.6627 16.4141 13.9884 15.9769C14.314 15.5397 14.4768 15.1205 14.4768 14.7192C14.4768 14.3179 14.314 13.8987 13.9884 13.4615C13.6627 13.0243 13.0909 12.8057 12.273 12.8057H9.4883V16.6327ZM9.4883 10.875H12.0826C12.6903 10.875 13.172 10.7013 13.5278 10.3539C13.8836 10.0064 14.0615 9.59037 14.0615 9.10575C14.0615 8.59035 13.8733 8.16918 13.497 7.84225C13.1207 7.51533 12.6595 7.35188 12.1133 7.35188H9.4883V10.875Z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M6.29811 18.625C6.04505 18.625 5.83115 18.5375 5.65641 18.3626C5.48166 18.1877 5.39429 17.9736 5.39429 17.7203C5.39429 17.467 5.48166 17.2532 5.65641 17.0788C5.83115 16.9045 6.04505 16.8173 6.29811 16.8173H9.21159L12.452 7.18265H9.53851C9.28545 7.18265 9.07155 7.0952 8.89681 6.9203C8.72206 6.7454 8.63469 6.5313 8.63469 6.278C8.63469 6.02472 8.72206 5.81089 8.89681 5.63652C9.07155 5.46217 9.28545 5.375 9.53851 5.375H16.8847C17.1377 5.375 17.3516 5.46245 17.5264 5.63735C17.7011 5.81225 17.7885 6.02634 17.7885 6.27962C17.7885 6.53293 17.7011 6.74676 17.5264 6.92113C17.3516 7.09548 17.1377 7.18265 16.8847 7.18265H14.2789L11.0385 16.8173H13.6443C13.8973 16.8173 14.1112 16.9048 14.286 17.0797C14.4607 17.2546 14.5481 17.4687 14.5481 17.722C14.5481 17.9752 14.4607 18.1891 14.286 18.3634C14.1112 18.5378 13.8973 18.625 13.6443 18.625H6.29811Z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M3.25 13.7404C3.0375 13.7404 2.85938 13.6684 2.71563 13.5246C2.57188 13.3808 2.5 13.2026 2.5 12.99C2.5 12.7774 2.57188 12.5993 2.71563 12.4558C2.85938 12.3122 3.0375 12.2404 3.25 12.2404H20.75C20.9625 12.2404 21.1406 12.3123 21.2843 12.4561C21.4281 12.5999 21.5 12.7781 21.5 12.9907C21.5 13.2033 21.4281 13.3814 21.2843 13.525C21.1406 13.6686 20.9625 13.7404 20.75 13.7404H3.25ZM10.9423 10.2596V6.62495H6.5673C6.2735 6.62495 6.02377 6.52201 5.8181 6.31613C5.61245 6.11026 5.50963 5.86027 5.50963 5.56615C5.50963 5.27205 5.61245 5.02083 5.8181 4.8125C6.02377 4.60417 6.2735 4.5 6.5673 4.5H17.4423C17.7361 4.5 17.9858 4.60294 18.1915 4.80883C18.3971 5.01471 18.5 5.2647 18.5 5.5588C18.5 5.85292 18.3971 6.10413 18.1915 6.31245C17.9858 6.52078 17.7361 6.62495 17.4423 6.62495H13.0673V10.2596H10.9423ZM10.9423 15.7211H13.0673V18.4423C13.0673 18.7361 12.9643 18.9858 12.7584 19.1915C12.5526 19.3971 12.3026 19.5 12.0085 19.5C11.7144 19.5 11.4631 19.3962 11.2548 19.1887C11.0465 18.9811 10.9423 18.7291 10.9423 18.4327V15.7211Z"></path>
+  </svg></span></button><div class="divider"></div><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8081)">
+      <path d="M9.4 16.6L4.8 12L9.4 7.4L8 6L2 12L8 18L9.4 16.6ZM14.6 16.6L19.2 12L14.6 7.4L16 6L22 12L16 18L14.6 16.6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8081">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M7 19v-.808L13.096 12L7 5.808V5h10v1.25H9.102L14.727 12l-5.625 5.77H17V19z"></path>
+  </svg></span></button><button type="button" class="toolbar-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M17.0385 19.5003V16.5388H14.0769V15.0388H17.0385V12.0773H18.5384V15.0388H21.5V16.5388H18.5384V19.5003H17.0385ZM10.8077 16.5388H7.03845C5.78282 16.5388 4.7125 16.0963 3.8275 15.2114C2.9425 14.3266 2.5 13.2564 2.5 12.0009C2.5 10.7454 2.9425 9.67504 3.8275 8.78979C4.7125 7.90454 5.78282 7.46191 7.03845 7.46191H10.8077V8.96186H7.03845C6.1987 8.96186 5.48235 9.25834 4.8894 9.85129C4.29645 10.4442 3.99998 11.1606 3.99998 12.0003C3.99998 12.8401 4.29645 13.5564 4.8894 14.1494C5.48235 14.7423 6.1987 15.0388 7.03845 15.0388H10.8077V16.5388ZM8.25 12.7503V11.2504H15.75V12.7503H8.25ZM21.5 12.0003H20C20 11.1606 19.7035 10.4442 19.1106 9.85129C18.5176 9.25834 17.8013 8.96186 16.9615 8.96186H13.1923V7.46191H16.9615C18.2171 7.46191 19.2875 7.90441 20.1725 8.78939C21.0575 9.67439 21.5 10.7447 21.5 12.0003Z"></path>
+  </svg></span></button></div><div class="milkdown-latex-inline-edit" data-v-app="" data-show="false"><div class="container"><div></div><button type="button"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <g clip-path="url(#clip0_1013_1606)">
+      <path d="M9.00012 16.1998L5.50012 12.6998C5.11012 12.3098 4.49012 12.3098 4.10012 12.6998C3.71012 13.0898 3.71012 13.7098 4.10012 14.0998L8.29012 18.2898C8.68012 18.6798 9.31012 18.6798 9.70012 18.2898L20.3001 7.69982C20.6901 7.30982 20.6901 6.68982 20.3001 6.29982C19.9101 5.90982 19.2901 5.90982 18.9001 6.29982L9.00012 16.1998Z" fill="#817567"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_1013_1606">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></button></div></div><div class="milkdown-block-handle" data-v-app="" data-show="false" draggable="true"><div class="operation-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_971_7676)">
+      <path d="M18 13H13V18C13 18.55 12.55 19 12 19C11.45 19 11 18.55 11 18V13H6C5.45 13 5 12.55 5 12C5 11.45 5.45 11 6 11H11V6C11 5.45 11.45 5 12 5C12.55 5 13 5.45 13 6V11H18C18.55 11 19 11.45 19 12C19 12.55 18.55 13 18 13Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_971_7676">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></div><div class="operation-item"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_971_7680)">
+      <path d="M11 18C11 19.1 10.1 20 9 20C7.9 20 7 19.1 7 18C7 16.9 7.9 16 9 16C10.1 16 11 16.9 11 18ZM9 10C7.9 10 7 10.9 7 12C7 13.1 7.9 14 9 14C10.1 14 11 13.1 11 12C11 10.9 10.1 10 9 10ZM9 4C7.9 4 7 4.9 7 6C7 7.1 7.9 8 9 8C10.1 8 11 7.1 11 6C11 4.9 10.1 4 9 4ZM15 8C16.1 8 17 7.1 17 6C17 4.9 16.1 4 15 4C13.9 4 13 4.9 13 6C13 7.1 13.9 8 15 8ZM15 10C13.9 10 13 10.9 13 12C13 13.1 13.9 14 15 14C16.1 14 17 13.1 17 12C17 10.9 16.1 10 15 10ZM15 16C13.9 16 13 16.9 13 18C13 19.1 13.9 20 15 20C16.1 20 17 19.1 17 18C17 16.9 16.1 16 15 16Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_971_7680">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span></div></div><div class="milkdown-slash-menu" data-v-app="" data-show="false"><div><nav class="tab-group"><ul><li class="selected">Text</li><li class="">List</li><li class="">Advanced</li></ul></nav><div class="menu-groups"><div class="menu-group"><h6>Text</h6><ul><li data-index="0" class="hover"><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5547)">
+      <path d="M5 5.5C5 6.33 5.67 7 6.5 7H10.5V17.5C10.5 18.33 11.17 19 12 19C12.83 19 13.5 18.33 13.5 17.5V7H17.5C18.33 7 19 6.33 19 5.5C19 4.67 18.33 4 17.5 4H6.5C5.67 4 5 4.67 5 5.5Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5547">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Text</span></li><li data-index="1" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5553)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM12 17H14V7H10V9H12V17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5553">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 1</span></li><li data-index="2" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5559)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15H11V13H13C14.1 13 15 12.11 15 11V9C15 7.89 14.1 7 13 7H9V9H13V11H11C9.9 11 9 11.89 9 13V17H15V15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5559">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 2</span></li><li data-index="3" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_992_5565)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13.5C15 12.67 14.33 12 13.5 12C14.33 12 15 11.33 15 10.5V9C15 7.89 14.1 7 13 7H9V9H13V11H11V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_992_5565">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 3</span></li><li data-index="4" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7757)">
+      <path d="M19.04 3H5.04004C3.94004 3 3.04004 3.9 3.04004 5V19C3.04004 20.1 3.94004 21 5.04004 21H19.04C20.14 21 21.04 20.1 21.04 19V5C21.04 3.9 20.14 3 19.04 3ZM19.04 19H5.04004V5H19.04V19ZM13.04 17H15.04V7H13.04V11H11.04V7H9.04004V13H13.04V17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7757">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 4</span></li><li data-index="5" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7760)">
+      <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13C15 11.89 14.1 11 13 11H11V9H15V7H9V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7760">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 5</span></li><li data-index="6" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7763)">
+      <path d="M11 17H13C14.1 17 15 16.11 15 15V13C15 11.89 14.1 11 13 11H11V9H15V7H11C9.9 7 9 7.89 9 9V15C9 16.11 9.9 17 11 17ZM11 13H13V15H11V13ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7763">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Heading 6</span></li><li data-index="7" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7897)">
+      <path d="M7.17 17C7.68 17 8.15 16.71 8.37 16.26L9.79 13.42C9.93 13.14 10 12.84 10 12.53V8C10 7.45 9.55 7 9 7H5C4.45 7 4 7.45 4 8V12C4 12.55 4.45 13 5 13H7L5.97 15.06C5.52 15.95 6.17 17 7.17 17ZM17.17 17C17.68 17 18.15 16.71 18.37 16.26L19.79 13.42C19.93 13.14 20 12.84 20 12.53V8C20 7.45 19.55 7 19 7H15C14.45 7 14 7.45 14 8V12C14 12.55 14.45 13 15 13H17L15.97 15.06C15.52 15.95 16.17 17 17.17 17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7897">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Quote</span></li><li data-index="8" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_7900)">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M19 13H5C4.45 13 4 12.55 4 12C4 11.45 4.45 11 5 11H19C19.55 11 20 11.45 20 12C20 12.55 19.55 13 19 13Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_7900">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Divider</span></li></ul></div><div class="menu-group"><h6>List</h6><ul><li data-index="9" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8070)">
+      <path d="M4 10.5C3.17 10.5 2.5 11.17 2.5 12C2.5 12.83 3.17 13.5 4 13.5C4.83 13.5 5.5 12.83 5.5 12C5.5 11.17 4.83 10.5 4 10.5ZM4 4.5C3.17 4.5 2.5 5.17 2.5 6C2.5 6.83 3.17 7.5 4 7.5C4.83 7.5 5.5 6.83 5.5 6C5.5 5.17 4.83 4.5 4 4.5ZM4 16.5C3.17 16.5 2.5 17.18 2.5 18C2.5 18.82 3.18 19.5 4 19.5C4.82 19.5 5.5 18.82 5.5 18C5.5 17.18 4.83 16.5 4 16.5ZM8 19H20C20.55 19 21 18.55 21 18C21 17.45 20.55 17 20 17H8C7.45 17 7 17.45 7 18C7 18.55 7.45 19 8 19ZM8 13H20C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11H8C7.45 11 7 11.45 7 12C7 12.55 7.45 13 8 13ZM7 6C7 6.55 7.45 7 8 7H20C20.55 7 21 6.55 21 6C21 5.45 20.55 5 20 5H8C7.45 5 7 5.45 7 6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8070">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Bullet List</span></li><li data-index="10" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8067)">
+      <path d="M8 7H20C20.55 7 21 6.55 21 6C21 5.45 20.55 5 20 5H8C7.45 5 7 5.45 7 6C7 6.55 7.45 7 8 7ZM20 17H8C7.45 17 7 17.45 7 18C7 18.55 7.45 19 8 19H20C20.55 19 21 18.55 21 18C21 17.45 20.55 17 20 17ZM20 11H8C7.45 11 7 11.45 7 12C7 12.55 7.45 13 8 13H20C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11ZM4.5 16H2.5C2.22 16 2 16.22 2 16.5C2 16.78 2.22 17 2.5 17H4V17.5H3.5C3.22 17.5 3 17.72 3 18C3 18.28 3.22 18.5 3.5 18.5H4V19H2.5C2.22 19 2 19.22 2 19.5C2 19.78 2.22 20 2.5 20H4.5C4.78 20 5 19.78 5 19.5V16.5C5 16.22 4.78 16 4.5 16ZM2.5 5H3V7.5C3 7.78 3.22 8 3.5 8C3.78 8 4 7.78 4 7.5V4.5C4 4.22 3.78 4 3.5 4H2.5C2.22 4 2 4.22 2 4.5C2 4.78 2.22 5 2.5 5ZM4.5 10H2.5C2.22 10 2 10.22 2 10.5C2 10.78 2.22 11 2.5 11H3.8L2.12 12.96C2.04 13.05 2 13.17 2 13.28V13.5C2 13.78 2.22 14 2.5 14H4.5C4.78 14 5 13.78 5 13.5C5 13.22 4.78 13 4.5 13H3.2L4.88 11.04C4.96 10.95 5 10.83 5 10.72V10.5C5 10.22 4.78 10 4.5 10Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8067">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Ordered List</span></li><li data-index="11" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M5.66936 16.3389L9.39244 12.6158C9.54115 12.4671 9.71679 12.3937 9.91936 12.3957C10.1219 12.3976 10.2975 12.4761 10.4463 12.6312C10.5847 12.7823 10.654 12.9585 10.654 13.1599C10.654 13.3613 10.5847 13.5363 10.4463 13.6851L6.32704 17.8197C6.14627 18.0004 5.93538 18.0908 5.69436 18.0908C5.45333 18.0908 5.24243 18.0004 5.06166 17.8197L3.01744 15.7754C2.87899 15.637 2.81136 15.4629 2.81456 15.2533C2.81776 15.0437 2.88859 14.8697 3.02706 14.7312C3.16551 14.5928 3.34008 14.5235 3.55076 14.5235C3.76144 14.5235 3.93494 14.5928 4.07126 14.7312L5.66936 16.3389ZM5.66936 8.72359L9.39244 5.00049C9.54115 4.85177 9.71679 4.77838 9.91936 4.78031C10.1219 4.78223 10.2975 4.86075 10.4463 5.01586C10.5847 5.16691 10.654 5.34314 10.654 5.54454C10.654 5.74592 10.5847 5.92097 10.4463 6.06969L6.32704 10.2043C6.14627 10.3851 5.93538 10.4755 5.69436 10.4755C5.45333 10.4755 5.24243 10.3851 5.06166 10.2043L3.01744 8.16009C2.87899 8.02162 2.81136 7.84759 2.81456 7.63799C2.81776 7.42837 2.88859 7.25433 3.02706 7.11586C3.16551 6.97741 3.34008 6.90819 3.55076 6.90819C3.76144 6.90819 3.93494 6.97741 4.07126 7.11586L5.66936 8.72359ZM13.7597 16.5581C13.5472 16.5581 13.3691 16.4862 13.2253 16.3424C13.0816 16.1986 13.0097 16.0204 13.0097 15.8078C13.0097 15.5952 13.0816 15.4171 13.2253 15.2735C13.3691 15.13 13.5472 15.0582 13.7597 15.0582H20.7597C20.9722 15.0582 21.1503 15.1301 21.2941 15.2739C21.4378 15.4177 21.5097 15.5959 21.5097 15.8085C21.5097 16.0211 21.4378 16.1992 21.2941 16.3427C21.1503 16.4863 20.9722 16.5581 20.7597 16.5581H13.7597ZM13.7597 8.94276C13.5472 8.94276 13.3691 8.87085 13.2253 8.72704C13.0816 8.58324 13.0097 8.40504 13.0097 8.19244C13.0097 7.97985 13.0816 7.80177 13.2253 7.65819C13.3691 7.5146 13.5472 7.44281 13.7597 7.44281H20.7597C20.9722 7.44281 21.1503 7.51471 21.2941 7.65851C21.4378 7.80233 21.5097 7.98053 21.5097 8.19311C21.5097 8.40571 21.4378 8.5838 21.2941 8.72739C21.1503 8.87097 20.9722 8.94276 20.7597 8.94276H13.7597Z"></path>
+  </svg></span><span>Task List</span></li></ul></div><div class="menu-group"><h6>Advanced</h6><ul><li data-index="12" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8075)">
+      <path d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM14.14 11.86L11.14 15.73L9 13.14L6 17H18L14.14 11.86Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8075">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Image</span></li><li data-index="13" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8081)">
+      <path d="M9.4 16.6L4.8 12L9.4 7.4L8 6L2 12L8 18L9.4 16.6ZM14.6 16.6L19.2 12L14.6 7.4L16 6L22 12L16 18L14.6 16.6Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8081">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Code</span></li><li data-index="14" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g clip-path="url(#clip0_977_8078)">
+      <path d="M20 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3ZM20 5V8H5V5H20ZM15 19H10V10H15V19ZM5 10H8V19H5V10ZM17 19V10H20V19H17Z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_977_8078">
+        <rect width="24" height="24"></rect>
+      </clipPath>
+    </defs>
+  </svg></span><span>Table</span></li><li data-index="15" class=""><span class="milkdown-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M7 19v-.808L13.096 12L7 5.808V5h10v1.25H9.102L14.727 12l-5.625 5.77H17V19z"></path>
+  </svg></span><span>Math</span></li></ul></div></div></div></div></div></div> </div> </div> </div> </div>  <div style=""><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/e3f4215c-68c5-413e-a478-6eac47279286.png"><img class="is-rounded  svelte-1truct9" src="sync_files/e3f4215c-68c5-413e-a478-6eac47279286.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/e3f4215c-68c5-413e-a478-6eac47279286.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><p><strong><s>1. Generación de Rayos:</s></strong><s style="color: unset;"> calcula el origen y la dirección del </s><em style="color: unset;"><s>viewing ray</s></em><s style="color: unset;"> de cada pixel.</s></p><p><strong style="color: rgb(64, 70, 84);">2. </strong><strong style="color: rgb(46, 51, 61);">Intersección de Rayos</strong><span style="color: rgb(46, 51, 61);">:</span><span style="color: rgb(64, 70, 84);"> encuentra el objeto más cercano a la cámara que es intersectado por el rayo.</span></p><p><strong>3. Coloreado (Shading): </strong>calcula el color del pixel basado en los resultados de la intersección.</p> </div></div> </div> </div> <div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column is-hidden svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style=""><img class="is-rounded  svelte-1truct9" style=""></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h1 class="ql-align-center"><strong>Intersección Objeto-Rayo</strong></h1><p class="ql-align-center">Queremos encontrar la intersección del rayo <em style="color: rgb(46, 51, 61);">e</em><em>+t</em><em style="color: rgb(46, 51, 61);">d</em> con cualquier objeto donde para t&gt;0</p> </div></div> </div> </div> </div> <div style=""><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/5d525228-91c3-47b6-93f0-d9c7de8aa379.png"><img class="is-rounded  svelte-1truct9" src="sync_files/5d525228-91c3-47b6-93f0-d9c7de8aa379.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/5d525228-91c3-47b6-93f0-d9c7de8aa379.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h2><strong>Intersección Esfera-Rayo</strong></h2><p>Una esfera con centro <strong>c</strong> y radio <em>R</em> se puede representar por la función implícita <em>f(p) = 0.</em></p><p>Dado el rayo <strong>p(t) = e</strong>+t<strong>d,</strong> buscamos el t para el cual f(<strong>e</strong>+t<strong>d</strong>) = 0, i.e. el punto donde el rayo intersecta a la esfera.</p><p><br></p> </div></div> </div> </div> </div> <div style=""><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/03d871f5-7299-4435-a049-1cca4e070c03.png"><img class="is-rounded  svelte-1truct9" src="sync_files/03d871f5-7299-4435-a049-1cca4e070c03.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/03d871f5-7299-4435-a049-1cca4e070c03.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h2><strong>Intersección Triangulo-Rayo</strong></h2><p>Un punto <strong>p </strong>que pertenece al triangulo con vertices <strong>a, b, c</strong> puede ser <span style="background-color: rgb(235, 214, 255);">expresado como una combinación baricéntrica de sus vértices</span>, es decir:</p><p><strong>p</strong> = α<strong>a </strong>+ β<strong>b </strong>+ γ<strong>c,</strong> </p><p>donde α,β,γ ≥ 0 y α + β + γ = 1</p><p><br></p><p><br></p> </div></div> </div> </div> <div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column is-hidden svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style=""><img class="is-rounded  svelte-1truct9" style=""></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h2><strong>Intersección con un Grupo de Objetos</strong></h2><p>Para cada rayo, revisamos la intersecciones posibles con cada objeto (i.e., cada triangulo) y elegimos la más cercana a la cámara.</p><p><br></p> </div></div> </div> </div> </div>  <div style=""><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/83079853-7473-4e66-b08e-cc3d6ca97d60.png"><img class="is-rounded  svelte-1truct9" src="sync_files/83079853-7473-4e66-b08e-cc3d6ca97d60.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/83079853-7473-4e66-b08e-cc3d6ca97d60.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h2>Luces</h2><p>Dado un punto en la superficie podemos obtener su normal (<strong>n</strong>), material, texturas uv, etc. Esto, combinado con su <span style="background-color: rgb(235, 214, 255);">distancia y orientación hacia las fuentes de luz</span> nor permite colorearlo adecuadamente.</p><blockquote>💡El cálculo se hace para cada fuente de luz</blockquote> </div></div> </div> </div> </div> <div style=""><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/46fd8a09-d66d-4f5d-8043-edb5070f06d8.png"><img class="is-rounded  svelte-1truct9" src="sync_files/46fd8a09-d66d-4f5d-8043-edb5070f06d8.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/46fd8a09-d66d-4f5d-8043-edb5070f06d8.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h2>Sombras</h2><p>Para agregar sombras, debemos considerar si el punto logra 'ver' la luz. Si <span style="background-color: rgb(235, 214, 255);">hay un objeto entre la superficie y la luz</span>, la superficie estará en sombra.</p><blockquote>Dada las imprecisiones numéricas, el rayo que usamos para evaluar tiene un pequeño epsilon. De esta forma evitamos 'chocar' con la superficie que origina el rayo.</blockquote> </div></div> </div> </div> </div> <div style=""><div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/95b40bea-d893-4063-9187-e5ed999a92d6.png"><img class="is-rounded  svelte-1truct9" src="sync_files/95b40bea-d893-4063-9187-e5ed999a92d6.png" style="https://s3.amazonaws.com/assets.yeira.io/persist/95b40bea-d893-4063-9187-e5ed999a92d6.png"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><h2>Espejos (Mirrors)</h2><p>Si estamos mirando una <span style="background-color: rgb(235, 214, 255);">superficie perfectamente especular </span>(e.j., espejo) el color del punto<strong> <em>x</em></strong><em> </em>que miramos va a ser un reflejo de lo que se vería desde ese punto <strong><em>x</em></strong><em> </em>en la dirección reflejada (<strong><em>r</em></strong>).</p><p>Podemos implementar esto cómo una <span style="background-color: rgb(235, 214, 255);">recursion</span> donde paramos cuando el rayo choca con una superficie opaca, o rebota un <em>máximo</em> de veces.</p> </div></div> </div> </div> </div> <div style=""><div class="text-container svelte-9rdfrf"><hr class="has-background-grey-light" style="height: 1px; margin: 60px 0px;"> <div class="overlay-text has-text-centered has-background-white  svelte-9rdfrf" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 0px 10px;"><div class="subtitle is-7 is-uppercase has-text-grey svelte-cbffuh" style="letter-spacing: 5px;; background-color: undefined">Practical </div></div></div> <div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column is-hidden svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style=""><img class="is-rounded  svelte-1truct9" style=""></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><p>Colab: <a href="https://colab.research.google.com/github/gilureta/grafica/blob/main/praticals/practical_07/RayTracing.ipynb" rel="noopener noreferrer" target="_blank">https://colab.research.google.com/github/gilureta/grafica/blob/main/praticals/practical_07/RayTracing.ipynb</a></p><p><strong>1. Qué cambios debemos hacer para visualizar los rayos de la Camara de Perspectiva?</strong></p><p><strong style="color: rgb(46, 51, 61);">2. Cómo aumentamos el numero de pixeles?</strong></p><p><strong style="color: rgb(46, 51, 61);">3. Qué pasa cuando cambiamos el focal lenght?</strong></p> </div></div> </div> </div>      </div> <div style=""><div class="text-container svelte-9rdfrf"><hr class="has-background-grey-light" style="height: 1px; margin: 60px 0px;"> <div class="overlay-text has-text-centered has-background-white  svelte-9rdfrf" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 0px 10px;"><div class="subtitle is-7 is-uppercase has-text-grey svelte-cbffuh" style="letter-spacing: 5px;; background-color: undefined">Aditional Reading </div></div></div> <div class="content svelte-cbffuh" style="margin: 15px 0;; background-color: undefined"><div class="columns is-flex-direction-row-reverse is-flex-wrap-wrap svelte-cbffuh" style="; background-color: undefined"><div class="column  svelte-cbffuh" style="; background-color: undefined"><div class="image-wrapper  svelte-1truct9" style="https://s3.amazonaws.com/assets.yeira.io/persist/36f9ce02-06f5-46af-91e8-2b77c07b38bc.jpeg"><img class="is-rounded  svelte-1truct9" src="sync_files/36f9ce02-06f5-46af-91e8-2b77c07b38bc.jpeg" style="https://s3.amazonaws.com/assets.yeira.io/persist/36f9ce02-06f5-46af-91e8-2b77c07b38bc.jpeg"></div> </div> <div class="column svelte-cbffuh" style="; background-color: undefined"><div class="text m-3 svelte-cbffuh" style="; background-color: undefined"><p><strong style="color: rgb(46, 51, 61);">Fundamentals of Computer Graphics | Capitulo 4 - Ray Tracing</strong></p><p><span style="color: rgb(46, 51, 61);">Para que revisen la matemática de ray-tracing en más detalle</span></p><p><strong style="color: rgb(46, 51, 61);">Implementing the Raytracing Algorithm by Scratch a Pixel </strong></p><p><a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/implementing-the-raytracing-algorithm.html" rel="noopener noreferrer" target="_blank">https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/implementing-the-raytracing-algorithm.html</a></p> </div></div> </div> </div> </div> </div> <iframe style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;" aria-hidden="true" tabindex="-1" src="sync_files/a_002.htm"></iframe></div>  </div>  </div> <div id="svelte-announcer" aria-live="assertive" aria-atomic="true" style="position: absolute; left: 0px; top: 0px; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px;"></div></div>
+
+
+</body></html>

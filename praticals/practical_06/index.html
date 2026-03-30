@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Practical 01</title>
+
+    <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+    <canvas id="canvas" width="600px" height="600px"></canvas>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        let scene, group, mesh, camera, camera2;
+        let controls, helpers = [];
+
+        let canvas, renderer;
+
+        init();
+
+        /** Called during the init function to create and add the camera(s) to the scene 
+         *  https://threejs.org/manual/?q=Ca#en/cameras
+         * **/
+        function addCamera() {
+            const aspect = canvas.clientWidth / canvas.clientHeight;
+
+            // Esta es la cámara que controlamos con el mouse
+            // El viewport principal que vemos.
+            camera = new THREE.PerspectiveCamera(
+                /*fov=*/60, aspect, /*near=*/0.1, /*far=*/100);
+            camera.position.set(10, 15, 2);
+            camera.lookAt(0, 0, 0);
+            scene.add(camera);
+
+            // Esto es lo que permite que controlemos la cámara 
+            // con el mouse
+            controls = new OrbitControls(camera, canvas);
+            controls.update();
+
+            // Agregamos una segunda camara en la escena
+            // Esta es la que estamos usando para dibujar en la esquina izquierda.
+            // TODO: modifica los valores de fov, aspect, near y far para 
+            // ver lo que sucede.
+            camera2 = new THREE.PerspectiveCamera(
+                /*fov=*/20, /*aspect=*/1.0, /*near=*/2, /*far=*/10);
+            camera2.position.set(5.5, 1.0, 5.5);
+            camera2.up.set(0.0, 1.0, 0.0);
+            camera2.lookAt(0, 0, 0);
+            scene.add(camera2);
+
+            // TODO: Descomenta el codigo para cambiar la camara2 a una cámara ortografica.
+            // {
+            //     camera2 = new THREE.OrthographicCamera(
+            //         /*left=*/-1,  
+            //         /*right=*/1, 
+            //         /*top=*/1, 
+            //         /*bottom=*/-1, 
+            //         /*near=*/2, 
+            //         /*far=*/10);
+            //     camera2.position.set(5.5, 1.0, 5.5);
+            //     camera2.lookAt(0, 0, 0);
+            // }
+
+            let cameraHelper = new THREE.CameraHelper(camera2);
+            helpers.push(cameraHelper);
+            scene.add(cameraHelper);
+
+        }
+
+        /** Updates the elements of the scene before the call to render */
+        function update() {
+            // TODO: Descomenta el código y *discute* por qué la 
+            // cámara no está siguiendo al cubo
+
+            mesh.position.x = 2;
+            group.rotation.y += 0.01;
+            camera2.lookAt(mesh.position);
+
+            // para que la cámara siga al cubo 
+            // necesitamos obtener la posición del cubo en world space
+            let wp = new THREE.Vector3();
+            mesh.getWorldPosition(wp);
+            camera2.lookAt(wp);
+
+        }
+
+
+        /** Called during the init function to create and add the mesh(es) to the scene **/
+        function addMeshes() {
+
+            const geometry = new THREE.BoxGeometry();
+            const meshAMat = new THREE.MeshPhongMaterial({ color: '#81ecec' })
+            mesh = new THREE.Mesh(geometry, meshAMat);
+            mesh.scale.set(1.0, 1.0, 1.0);
+            group = new THREE.Group();
+
+            group.add(mesh);
+            scene.add(group);
+
+            // TODO: calcular la posición de la camara para que quepa el cubo
+            // mantener el angulo existente de la cámara.
+
+            geometry.computeBoundingSphere();
+            let sphere = geometry.boundingSphere;
+            // https://threejs.org/docs/#Vector3
+            let d = sphere.radius / Math.sin(camera2.fov * Math.PI / 180 / 2.0);
+            camera2.position.normalize().multiplyScalar(d);
+
+
+        }
+
+        /** Called during the init function to add the lights in the scene **/
+        function addLight() {
+            // Create the light
+            // https://threejs.org/manual/?q=light#en/lights
+
+            const light = new THREE.AmbientLight(0xFFFFFF, 0.5);
+            scene.add(light);
+
+            const pointLight = new THREE.PointLight(0xff00ff, 1);
+            pointLight.position.set(0, 0.5, 1.0);
+            scene.add(pointLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(0, 0, 0);
+            directionalLight.target.position.set(0, 0, 0);
+
+            scene.add(directionalLight.target);
+            camera.add(directionalLight);
+        }
+
+
+        /** Creates the scene and initalizes the elements in it **/
+        function init() {
+            canvas = document.querySelector('#canvas');
+
+            scene = new THREE.Scene();
+
+            // Create the renderer
+            renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+
+            // renderer.setPixelRatio( window.devicePixelRatio );
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.setScissorTest(true);
+
+            addCamera();
+            addMeshes();
+            addLight();
+
+
+            renderer.setAnimationLoop(() => {
+                update();
+                controls.update();
+
+                let w = canvas.clientWidth;
+                let h = canvas.clientHeight;
+
+                helpers.forEach(x => x.visible = true);
+                renderer.setScissor(0, 0, w, h);
+                renderer.setViewport(0, 0, w, h);
+                renderer.setClearColor(0xeeeeee, 1); // Red background
+
+                renderer.clear(); // Clears entire screen
+                renderer.render(scene, camera);
+                renderer.setScissorTest(true);
+
+                helpers.forEach(x => x.visible = false);
+                renderer.setScissor(0, 0, h / 4, h / 4);
+                renderer.setViewport(0, 0, h / 4, h / 4);
+                renderer.setClearColor(0, 1); // Red background
+                renderer.clear(true);
+                renderer.render(scene, camera2);
+            });
+
+
+            const gridHelper = new THREE.GridHelper(20, 20, "#ccc", "#fff");
+            gridHelper.position.set(0, -0.01, 0);
+            scene.add(gridHelper);
+
+            const axesHelper = new THREE.AxesHelper(2);
+            axesHelper.position.set(0, -0.01, 0);
+            scene.add(axesHelper);
+
+            helpers.push(gridHelper);
+            helpers.push(axesHelper);
+
+        }
+
+
+    </script>
+</body>
+
+</html>
