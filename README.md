@@ -51,6 +51,12 @@
         * FCC - Ch 4 - Ray Tracing
         * [Implementing the Ray Tracing Algorithm](https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/implementing-the-raytracing-algorithm.html) by Scratch a Pixel 
 
+1. Clase 08 - Graphics Pipeline
+    * 30/03 - [Storyboard](https://magic.synclive.io/?id=pVe5Leyn) -  [Practical](practicals/practical_08/attribute_interpolation.ipynb)
+    *  Después de esta clase los estudiantes pueden **explicar** cómo un modelo 3D se convierte en una imagen 2D mediante rasterización, **describiendo** el rol de la proyección, la generación de fragmentos, la interpolación de atributos y el uso del depth buffer para determinar el color final de cada píxel.
+    * Lecturas complementarias:
+        * FCC - Ch 9 - The Graphics Pipeline
+
 ## Bibliografia
 * **[FCC]** Marschner, S., Shirley, P. (2021). Fundamentals of Computer Graphics: International Student Edition. United States: CRC Press. [[BiblioUC](https://buscador.bibliotecas.uc.cl/permalink/56PUC_INST/1mvmg85/alma990005791390203396)]
 * Akenine-Möller, T., Haines, E., Hoffman, N. (2018). Real-Time Rendering, Fourth Edition. United Kingdom: CRC Press.
